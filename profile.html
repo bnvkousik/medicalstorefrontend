@@ -86,6 +86,42 @@
       cursor: pointer;
     }
 
+    .profile-options {
+      position: relative;
+      display: inline-block;
+      margin-top: 20px;
+    }
+
+    .profile-options button {
+      background: none;
+      border: none;
+      padding: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .profile-options-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      border-radius: 5px;
+      text-align: left;
+    }
+
+    .profile-options-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .profile-options-content a:hover {background-color: #ddd;}
+
+    .show {display:block;}
+
     footer {
       background: #00164a;
       padding: 15px;
@@ -127,14 +163,23 @@
       <button type="submit">Update Profile</button>
     </form>
 
-    <h3>Change Password</h3>
-    <form id="changePasswordForm">
-      <label for="currentPassword">Current Password:</label>
-      <input type="password" id="currentPassword" required>
-      <label for="newPassword">New Password:</label>
-      <input type="password" id="newPassword" required>
-      <button type="submit">Change Password</button>
-    </form>
+    <div class="profile-options">
+      <button onclick="toggleProfileOptions()">☰</button>
+      <div id="profileOptionsContent" class="profile-options-content">
+        <a href="#" onclick="showChangePassword()">Change Password</a>
+      </div>
+    </div>
+
+    <div id="changePasswordSection" style="display:none; margin-top: 20px;">
+      <h3>Change Password</h3>
+      <form id="changePasswordForm">
+        <label for="currentPassword">Current Password:</label>
+        <input type="password" id="currentPassword" required>
+        <label for="newPassword">New Password:</label>
+        <input type="password" id="newPassword" required>
+        <button type="submit">Change Password</button>
+      </form>
+    </div>
   </section>
 
   <footer>
@@ -175,12 +220,35 @@
       user.password = newPassword;
       localStorage.setItem("user", JSON.stringify(user));
       alert("Password changed successfully!");
+      document.getElementById("changePasswordSection").style.display = "none"; // Hide password form after successful change
     });
 
     function logout() {
       localStorage.removeItem("isLoggedIn");
       alert("Logged out successfully!");
       window.location.href = "login.html";
+    }
+
+    function toggleProfileOptions() {
+      document.getElementById("profileOptionsContent").classList.toggle("show");
+    }
+
+    function showChangePassword() {
+      document.getElementById("profileOptionsContent").classList.remove("show");
+      document.getElementById("changePasswordSection").style.display = "block";
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.profile-options button')) {
+        var dropdowns = document.getElementsByClassName("profile-options-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
     }
   </script>
 </body>

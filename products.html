@@ -100,17 +100,23 @@
       font-weight: bold;
     }
 
-    footer {
-      background: #00164a;
-      padding: 15px;
-      color: white;
-      text-align: center;
+    .pagination {
+      display: flex;
+      justify-content: center;
+      padding: 20px;
     }
 
-    footer a {
-      color: #aad4ff;
-      text-decoration: none;
+    .pagination button {
+      padding: 8px 12px;
       margin: 0 5px;
+      border: 1px solid #ddd;
+      background: white;
+      cursor: pointer;
+    }
+
+    .pagination button.active {
+      background-color: #00164a;
+      color: white;
     }
   </style>
 </head>
@@ -139,28 +145,131 @@
         <option value="pain-relief">Pain Relief</option>
         <option value="vitamins">Vitamins</option>
         <option value="cold-medication">Cold Medication</option>
-      </select>
+        </select>
     </label>
     <button onclick="applyFilters()">Apply Filters</button>
   </section>
 
   <section class="products-container" id="productList"></section>
 
+  <div class="pagination" id="paginationControls"></div>
+
   <footer>
     <p>© 2025 PharmaBridge | <a href="terms.html">Privacy Policy</a> | <a href="faq.html">FAQs</a></p>
   </footer>
 
   <script>
-    const products = [
-      { id: 1, name: "Pain Reliever", category: "pain-relief", price: "$10", prescription: false, img: "pain-relief.jpg" },
-      { id: 2, name: "Vitamin C", category: "vitamins", price: "$15", prescription: false, img: "vitamins.jpg" },
-      { id: 3, name: "Cold Medicine", category: "cold-medication", price: "$12", prescription: true, img: "cold-med.jpg" }
+    const allProducts = [
+      { id: 1, name: "Paracetamol 500mg Tablets", category: "pain-relief", price: "$2.50", prescription: false, img: "https://media.istockphoto.com/id/157402355/photo/generic-paracetamol-isolated-on-white.jpg?s=1024x1024&w=is&k=20&c=hJmEMYYvJ8s4gTkdTewITUaRQg63Al6tJRDWHBizW6Y=" },
+      { id: 2, name: "Vitamin C 1000mg Effervescent Tablets", category: "vitamins", price: "$5.00", prescription: false, img: "images/vitamin_c_effervescent.jpg" },
+      { id: 3, name: "Cough Syrup (Adult)", category: "cold-medication", price: "$7.00", prescription: false, img: "images/cough_syrup_adult.jpg" },
+      { id: 4, name: "Ibuprofen 200mg Tablets", category: "pain-relief", price: "$3.00", prescription: false, img: "images/ibuprofen_200mg.jpg" },
+      { id: 5, name: "Multivitamin Tablets", category: "vitamins", price: "$8.00", prescription: false, img: "images/multivitamin.jpg" },
+      { id: 6, name: "Nasal Decongestant Spray", category: "cold-medication", price: "$6.50", prescription: false, img: "images/nasal_spray.jpg" },
+      { id: 7, name: "Antacid Tablets", category: "digestive-health", price: "$4.00", prescription: false, img: "images/antacid_tablets.jpg" },
+      { id: 8, name: "Omega-3 Fish Oil Capsules", category: "supplements", price: "$12.00", prescription: false, img: "images/omega3_fish_oil.jpg" },
+      { id: 9, name: "Hand Sanitizer (Alcohol-based)", category: "personal-care", price: "$3.50", prescription: false, img: "images/hand_sanitizer.jpg" },
+      { id: 10, name: "First Aid Kit (Small)", category: "first-aid", price: "$15.00", prescription: false, img: "images/first_aid_kit_small.jpg" },
+      { id: 11, name: "Loratadine 10mg Tablets", category: "allergy", price: "$4.50", prescription: false, img: "images/loratadine_10mg.jpg" },
+      { id: 12, name: "Calcium Supplements", category: "supplements", price: "$9.00", prescription: false, img: "images/calcium_supplements.jpg" },
+      { id: 13, name: "Sore Throat Lozenges", category: "cold-medication", price: "$5.50", prescription: false, img: "images/sore_throat_lozenges.jpg" },
+      { id: 14, name: "Naproxen 500mg Tablets", category: "pain-relief", price: "$6.00", prescription: false, img: "images/naproxen_500mg.jpg" },
+      { id: 15, name: "Vitamin B Complex Capsules", category: "vitamins", price: "$10.00", prescription: false, img: "images/vitamin_b_complex.jpg" },
+      { id: 16, name: "Antihistamine Cream", category: "allergy", price: "$7.50", prescription: false, img: "images/antihistamine_cream.jpg" },
+      { id: 17, name: "Digestive Enzyme Capsules", category: "digestive-health", price: "$11.50", prescription: false, img: "images/digestive_enzymes.jpg" },
+      { id: 18, name: "Probiotic Capsules", category: "supplements", price: "$14.00", prescription: false, img: "images/probiotic_capsules.jpg" },
+      { id: 19, name: "Adhesive Bandages (Pack of 20)", category: "first-aid", price: "$2.00", prescription: false, img: "images/adhesive_bandages.jpg" },
+      { id: 20, name: "Cetirizine 10mg Tablets", category: "allergy", price: "$5.00", prescription: false, img: "images/cetirizine_10mg.jpg" },
+      { id: 21, name: "Aspirin 75mg Tablets", category: "pain-relief", price: "$3.50", prescription: false, img: "images/aspirin_75mg.jpg" },
+      { id: 22, name: "Vitamin D Drops", category: "vitamins", price: "$9.50", prescription: false, img: "images/vitamin_d_drops.jpg" },
+      { id: 23, name: "Throat Spray", category: "cold-medication", price: "$8.00", prescription: false, img: "images/throat_spray.jpg" },
+      { id: 24, name: "Muscle Rub Cream", category: "pain-relief", price: "$10.50", prescription: false, img: "images/muscle_rub.jpg" },
+      { id: 25, name: "Folic Acid Tablets", category: "vitamins", price: "$6.50", prescription: false, img: "images/folic_acid.jpg" },
+      { id: 26, name: "Allergy Eye Drops", category: "allergy", price: "$9.00", prescription: false, img: "images/allergy_eye_drops.jpg" },
+      { id: 27, name: "Laxative Tablets", category: "digestive-health", price: "$7.00", prescription: false, img: "images/laxative_tablets.jpg" },
+      { id: 28, name: "Glucosamine & Chondroitin", category: "supplements", price: "$18.00", prescription: false, img: "images/glucosamine_chondroitin.jpg" },
+      { id: 29, name: "Antiseptic Wipes", category: "first-aid", price: "$4.00", prescription: false, img: "images/antiseptic_wipes.jpg" },
+      { id: 30, name: "Hydrocortisone Cream", category: "skin-care", price: "$8.50", prescription: false, img: "images/hydrocortisone_cream.jpg" },
+      { id: 31, name: "Codeine Phosphate Tablets (Prescription)", category: "pain-relief", price: "$12.00", prescription: true, img: "images/codeine_tablets.jpg" },
+      { id: 32, name: "Vitamin B12 Injections (Prescription)", category: "vitamins", price: "$25.00", prescription: true, img: "images/vitamin_b12_injection.jpg" },
+      { id: 33, name: "Antibiotic Ointment (Prescription)", category: "first-aid", price: "$11.00", prescription: true, img: "images/antibiotic_ointment.jpg" },
+      { id: 34, name: "Insulin Vials (Prescription)", category: "diabetes-care", price: "$45.00", prescription: true, img: "images/insulin_vial.jpg" },
+      { id: 35, name: "Asthma Inhaler (Prescription)", category: "respiratory-care", price: "$30.00", prescription: true, img: "images/asthma_inhaler.jpg" },
+      { id: 36, name: "Blood Pressure Monitor", category: "health-devices", price: "$35.00", prescription: false, img: "images/blood_pressure_monitor.jpg" },
+      { id: 37, name: "Thermometer (Digital)", category: "health-devices", price: "$15.00", prescription: false, img: "images/digital_thermometer.jpg" },
+      { id: 38, name: "Support Bandage", category: "first-aid", price: "$6.00", prescription: false, img: "images/support_bandage.jpg" },
+      { id: 39, name: "Wound Dressing", category: "first-aid", price: "$4.50", prescription: false, img: "images/wound_dressing.jpg" },
+      { id: 40, name: "Elastic Crepe Bandage", category: "first-aid", price: "$7.50", prescription: false, img: "images/elastic_bandage.jpg" },
+      { id: 41, name: "Paracetamol Syrup (Children)", category: "pain-relief", price: "$5.00", prescription: false, img: "images/paracetamol_syrup_kids.jpg" },
+      { id: 42, name: "Chewable Multivitamins (Children)", category: "vitamins", price: "$9.00", prescription: false, img: "images/chewable_multivitamins_kids.jpg" },
+      { id: 43, name: "Baby Nasal Drops", category: "cold-medication", price: "$6.00", prescription: false, img: "images/baby_nasal_drops.jpg" },
+      { id: 44, name: "Teething Gel", category: "baby-care", price: "$7.00", prescription: false, img: "images/teething_gel.jpg" },
+      { id: 45, name: "Sunscreen Lotion (SPF 30)", category: "personal-care", price: "$12.00", prescription: false, img: "images/sunscreen_spf30.jpg" },
+      { id: 46, name: "Moisturizing Cream", category: "skin-care", price: "$15.00", prescription: false, img: "images/moisturizing_cream.jpg" },
+      { id: 47, name: "Shampoo (Anti-dandruff)", category: "hair-care", price: "$10.00", prescription: false, img: "images/anti_dandruff_shampoo.jpg" },
+      { id: 48, name: "Toothpaste (Fluoride)", category: "oral-care", price: "$4.00", prescription: false, img: "images/fluoride_toothpaste.jpg" },
+      { id: 49, name: "Mouthwash (Antiseptic)", category: "oral-care", price: "$8.00", prescription: false, img: "images/antiseptic_mouthwash.jpg" },
+      { id: 50, name: "Cotton Balls", category: "personal-care", price: "$3.00", prescription: false, img: "images/cotton_balls.jpg" },
+      { id: 51, name: "Pain Relief Patch", category: "pain-relief", price: "$9.50", prescription: false, img: "images/pain_relief_patch.jpg" },
+      { id: 52, name: "Vitamin E Capsules", category: "vitamins", price: "$11.00", prescription: false, img: "images/vitamin_e_capsules.jpg" },
+      { id: 53, name: "Cough Drops (Menthol)", category: "cold-medication", price: "$4.50", prescription: false, img: "images/cough_drops_menthol.jpg" },
+      { id: 54, name: "Motion Sickness Tablets", category: "travel-essentials", price: "$6.50", prescription: false, img: "images/motion_sickness_tablets.jpg" },
+      { id: 55, name: "Sleeping Aid Tablets", category: "sleep-aids", price: "$12.50",prescription: false, img: "images/sleeping_aid_tablets.jpg" },
+      { id: 56, name: "Wound Closure Strips", category: "first-aid", price: "$5.50", prescription: false, img: "images/wound_closure_strips.jpg" },
+      { id: 57, name: "Insect Repellent Spray", category: "personal-care", price: "$8.00", prescription: false, img: "images/insect_repellent.jpg" },
+      { id: 58, name: "Lip Balm (SPF)", category: "skin-care", price: "$3.50", prescription: false, img: "images/lip_balm_spf.jpg" },
+      { id: 59, name: "Dental Floss", category: "oral-care", price: "$2.50", prescription: false, img: "images/dental_floss.jpg" },
+      { id: 60, name: "Eye Wash Solution", category: "eye-care", price: "$7.00", prescription: false, img: "images/eye_wash_solution.jpg" },
+      { id: 61, name: "Strong Pain Relief Balm", category: "pain-relief", price: "$11.50", prescription: false, img: "images/strong_pain_relief_balm.jpg" },
+      { id: 62, name: "Zinc Supplements", category: "vitamins", price: "$8.50", prescription: false, img: "images/zinc_supplements.jpg" },
+      { id: 63, name: "Herbal Cough Syrup", category: "cold-medication", price: "$9.00", prescription: false, img: "images/herbal_cough_syrup.jpg" },
+      { id: 64, name: "Travel Sickness Bands", category: "travel-essentials", price: "$10.00", prescription: false, img: "images/travel_sickness_bands.jpg" },
+      { id: 65, name: "Melatonin Tablets", category: "sleep-aids", price: "$15.00", prescription: false, img: "images/melatonin_tablets.jpg" },
+      { id: 66, name: "Burn Cream", category: "first-aid", price: "$7.00", prescription: false, img: "images/burn_cream.jpg" },
+      { id: 67, name: "Foot Cream", category: "foot-care", price: "$12.00", prescription: false, img: "images/foot_cream.jpg" },
+      { id: 68, name: "Anti-fungal Cream", category: "skin-care", price: "$14.00", prescription: false, img: "images/anti_fungal_cream.jpg" },
+      { id: 69, name: "Electric Toothbrush", category: "oral-care", price: "$30.00", prescription: false, img: "images/electric_toothbrush.jpg" },
+      { id: 70, name: "Contact Lens Solution", category: "eye-care", price: "$10.00", prescription: false, img: "images/contact_lens_solution.jpg" },
+      { id: 71, name: "Headache Relief Tablets", category: "pain-relief", price: "$4.00", prescription: false, img: "images/headache_relief_tablets.jpg" },
+      { id: 72, name: "Iron Supplements", category: "vitamins", price: "$7.50", prescription: false, img: "images/iron_supplements.jpg" },
+      { id: 73, name: "Eucalyptus Oil (Inhalant)", category: "cold-medication", price: "$6.00", prescription: false, img: "images/eucalyptus_oil.jpg" },
+      { id: 74, name: "Sea Sickness Patches", category: "travel-essentials", price: "$11.00", prescription: false, img: "images/sea_sickness_patches.jpg" },
+      { id: 75, name: "Herbal Sleeping Aid", category: "sleep-aids", price: "$16.00", prescription: false, img: "images/herbal_sleeping_aid.jpg" },
+      { id: 76, name: "Sterile Gauze Pads", category: "first-aid", price: "$5.00", prescription: false, img: "images/sterile_gauze_pads.jpg" },
+      { id: 77, name: "Corn Removal Plasters", category: "foot-care", price: "$8.00", prescription: false, img: "images/corn_removal_plasters.jpg" },
+      { id: 78, name: "Acne Treatment Cream", category: "skin-care", price: "$13.00", prescription: false, img: "images/acne_treatment_cream.jpg" },
+      { id: 79, name: "Water Flosser", category: "oral-care", price: "$45.00", prescription: false, img: "images/water_flosser.jpg" },
+      { id: 80, name: "Eye Drops (Lubricating)", category: "eye-care", price: "$8.50", prescription: false, img: "images/lubricating_eye_drops.jpg" },
+      { id: 81, name: "Back Pain Relief Cream", category: "pain-relief", price: "$10.00", prescription: false, img: "images/back_pain_cream.jpg" },
+      { id: 82, name: "Magnesium Supplements", category: "vitamins", price: "$9.50", prescription: false, img: "images/magnesium_supplements.jpg" },
+      { id: 83, name: "Cough & Cold Tablets", category: "cold-medication", price: "$6.50", prescription: false, img: "images/cough_cold_tablets.jpg" },
+      { id: 84, name: "Ear Drops (Wax Removal)", category: "ear-care", price: "$7.50", prescription: false, img: "images/ear_wax_removal_drops.jpg" },
+      { id: 85, name: "Sleep Mask", category: "sleep-aids", price: "$11.00", prescription: false, img: "images/sleep_mask.jpg" },
+      { id: 86, name: "Medical Tape", category: "first-aid", price: "$3.50", prescription: false, img: "images/medical_tape.jpg" },
+      { id: 87, name: "Callus Remover", category: "foot-care", price: "$9.00", prescription: false, img: "images/callus_remover.jpg" },
+      { id: 88, name: "Eczema Cream", category: "skin-care", price: "$16.00", prescription: false, img: "images/eczema_cream.jpg" },
+      { id: 89, name: "Tongue Cleaner", category: "oral-care", price: "$3.00", prescription: false, img: "images/tongue_cleaner.jpg" },
+      { id: 90, name: "Reading Glasses", category: "eye-care", price: "$20.00", prescription: false, img: "images/reading_glasses.jpg" },
+      { id: 91, name: "Arthritis Pain Relief Gel", category: "pain-relief", price: "$13.00", prescription: false, img: "images/arthritis_pain_gel.jpg" },
+      { id: 92, name: "Vitamin A Supplements", category: "vitamins", price: "$8.00", prescription: false, img: "images/vitamin_a_supplements.jpg" },
+      { id: 93, name: "Steam Inhaler", category: "cold-medication", price: "$25.00", prescription: false, img: "images/steam_inhaler.jpg" },
+      { id: 94, name: "Ear Plugs", category: "ear-care", price: "$4.00", prescription: false, img: "images/ear_plugs.jpg" },
+      { id: 95, name: "Humidifier", category: "respiratory-care", price: "$40.00", prescription: false, img: "images/humidifier.jpg" },
+      { id: 96, name: "Tweezers (Medical)", category: "first-aid", price: "$5.00", prescription: false, img: "images/medical_tweezers.jpg" },
+      { id: 97, name: "Nail Clippers", category: "personal-care", price: "$6.00", prescription: false, img: "images/nail_clippers.jpg" },
+      { id: 98, name: "Stretch Mark Cream", category: "skin-care", price: "$18.00", prescription: false, img: "images/stretch_mark_cream.jpg" },
+      { id: 99, name: "Toothbrush (Soft Bristle)", category: "oral-care", price: "$3.50", prescription: false, img: "images/soft_toothbrush.jpg" },
+      { id: 100, name: "Magnifying Glass (Medical)", category: "health-devices", price: "$12.00", prescription: false, img: "images/medical_magnifying_glass.jpg" }
     ];
 
-    function displayProducts(filteredProducts) {
-      let productList = document.getElementById("productList");
+    const productsPerPage = 20;
+    let currentPage = 1;
+    let filteredProducts = [...allProducts]; // Start with all products
+
+    function displayProducts(productsToDisplay) {
+      const productList = document.getElementById("productList");
       productList.innerHTML = "";
-      filteredProducts.forEach(product => {
+      productsToDisplay.forEach(product => {
         productList.innerHTML += `
           <div class="product-card">
             <img src="${product.img}" alt="${product.name}">
@@ -174,21 +283,53 @@
       });
     }
 
+    function renderPagination() {
+      const paginationControls = document.getElementById("paginationControls");
+      paginationControls.innerHTML = "";
+      const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+
+      for (let i = 1; i <= totalPages; i++) {
+        const button = document.createElement("button");
+        button.textContent = i;
+        if (i === currentPage) {
+          button.classList.add("active");
+        }
+        button.addEventListener("click", () => {
+          currentPage = i;
+          updateProductList();
+          renderPagination();
+        });
+        paginationControls.appendChild(button);
+      }
+    }
+
+    function updateProductList() {
+      const startIndex = (currentPage - 1) * productsPerPage;
+      const endIndex = startIndex + productsPerPage;
+      const productsToDisplay = filteredProducts.slice(startIndex, endIndex);
+      displayProducts(productsToDisplay);
+    }
+
     function applyFilters() {
-      let category = document.getElementById("categoryFilter").value;
-      let prescriptionRequired = document.getElementById("prescriptionFilter").checked;
-      let filteredProducts = products.filter(product => {
+      const category = document.getElementById("categoryFilter").value;
+      const prescriptionRequired = document.getElementById("prescriptionFilter").checked;
+      filteredProducts = allProducts.filter(product => {
         return (category === "all" || product.category === category) &&
                (!prescriptionRequired || product.prescription);
       });
-      displayProducts(filteredProducts);
+      currentPage = 1; // Reset to the first page after filtering
+      updateProductList();
+      renderPagination();
     }
 
     function addToCart(productId) {
       alert(`Product ID ${productId} added to cart!`);
     }
 
-    document.addEventListener("DOMContentLoaded", () => displayProducts(products));
+    document.addEventListener("DOMContentLoaded", () => {
+      updateProductList();
+      renderPagination();
+    });
   </script>
 </body>
 </html>

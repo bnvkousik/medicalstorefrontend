@@ -18,6 +18,7 @@
       background-position: center;
       background-repeat: no-repeat;
       min-height: 100vh;
+      position: relative; /* To contain the notification */
     }
 
     nav {
@@ -121,7 +122,7 @@
       padding: 15px;
       color: white;
       text-align: center;
-      position: relative;
+      position: absolute; /* Changed to absolute to avoid covering content */
       bottom: 0;
       width: 100%;
     }
@@ -129,6 +130,27 @@
     footer a {
       color: #aad4ff;
       text-decoration: none;
+    }
+
+    /* Custom Notification Styles */
+    #notification {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 128, 128, 0.8);
+      color: white;
+      padding: 15px 20px;
+      border-radius: 8px;
+      z-index: 1001; /* Ensure it's above other elements */
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+    }
+
+    #notification.show {
+      opacity: 1;
+      visibility: visible;
     }
   </style>
 </head>
@@ -179,6 +201,8 @@
     <p><a href="#" onclick="showPasswordLogin()">Back to Password Login</a></p>
   </section>
 
+  <div id="notification"></div>
+
   <footer>
     <p>© 2025 PharmaBridge |
       <a href="terms.html">Privacy Policy</a> |
@@ -187,6 +211,16 @@
   </footer>
 
   <script>
+    const notificationDiv = document.getElementById("notification");
+
+    function showNotification(message, duration = 3000) {
+      notificationDiv.textContent = message;
+      notificationDiv.classList.add("show");
+      setTimeout(() => {
+        notificationDiv.classList.remove("show");
+      }, duration);
+    }
+
     function showOTPLogin() {
       document.getElementById("loginSection").style.display = "none";
       document.getElementById("otpSection").style.display = "block";
@@ -204,24 +238,26 @@
       let storedUser = JSON.parse(localStorage.getItem("user")) || { email: "test@example.com", password: "123456" };
 
       if (email === storedUser.email && password === storedUser.password) {
-        alert("Login Successful!");
+        showNotification("Login Successful!");
         localStorage.setItem("isLoggedIn", "true");
-        window.location.href = "index.html";
+        setTimeout(() => {
+          window.location.href = "index.html";
+        }, 600); // Delay redirect slightly to show notification
       } else {
-        alert("Invalid email or password.");
+        showNotification("Invalid email or password.");
       }
     });
 
     function sendOTP() {
       let otpEmail = document.getElementById("otpEmail").value;
       if (!otpEmail) {
-        alert("Please enter your email.");
+        showNotification("Please enter your email.");
         return;
       }
 
       let otp = Math.floor(100000 + Math.random() * 900000);
       localStorage.setItem("otp", otp);
-      alert(`OTP sent to ${otpEmail}: ${otp}`);
+      showNotification(`OTP sent to ${otpEmail}: ${otp}`);
     }
 
     document.getElementById("otpForm").addEventListener("submit", function(event) {
@@ -230,11 +266,13 @@
       let storedOTP = localStorage.getItem("otp");
 
       if (enteredOTP === storedOTP) {
-        alert("OTP Verified! Login Successful.");
+        showNotification("OTP Verified! Login Successful.");
         localStorage.setItem("isLoggedIn", "true");
-        window.location.href = "index.html";
+        setTimeout(() => {
+          window.location.href = "index.html";
+        }, 600); // Delay redirect slightly to show notification
       } else {
-        alert("Invalid OTP. Please try again.");
+        showNotification("Invalid OTP. Please try again.");
       }
     });
   </script>

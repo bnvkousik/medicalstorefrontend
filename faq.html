@@ -170,6 +170,16 @@
       questions.forEach(question => {
         question.addEventListener("click", function() {
           let answer = this.nextElementSibling;
+          let allAnswers = document.querySelectorAll(".faq-answer");
+
+          // Close all open answers
+          allAnswers.forEach(otherAnswer => {
+            if (otherAnswer !== answer && otherAnswer.style.display === "block") {
+              otherAnswer.style.display = "none";
+            }
+          });
+
+          // Toggle the current answer
           answer.style.display = (answer.style.display === "block") ? "none" : "block";
         });
       });

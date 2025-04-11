@@ -8,136 +8,113 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background-color: #f4f4f4;
+      color: #555; /* Decent grey color for text */
     }
 
-    nav {
-      background: #00164a;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      height: 60px;
+    .container {
+      max-width: 960px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
-    .logo {
-      color: white;
-      font-size: 26px;
-      font-weight: bold;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      padding: 0;
-      margin: 0;
-    }
-
-    nav ul li {
-      margin: 0 12px;
-    }
-
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 15px;
-      padding: 6px 8px;
-      transition: background 0.3s;
-    }
-
-    nav ul li a:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-      border-radius: 4px;
-    }
-
-    .about-container {
-      text-align: left;
-      padding: 40px 20px;
-      max-width: 800px;
-      margin: auto;
-    }
-
-    .about-container h2,
-    .about-container h3 {
+    h2 {
+      color: #007bff; /* Decent blue color for heading */
       text-align: center;
-      color: #00164a;
+      margin-bottom: 30px;
     }
 
-    .about-container p,
-    .about-container ul {
-      font-size: 16px;
-      color: #555;
+    h3 {
+      color: #007bff; /* Same decent blue color for subheading */
+      margin-top: 25px;
+      margin-bottom: 10px;
+    }
+
+    p {
       margin-bottom: 15px;
     }
 
-    .about-container ul {
-      list-style-type: none;
-      padding: 0;
+    ul {
+      padding-left: 20px;
+      margin-bottom: 15px;
     }
 
-    .about-container ul li {
-      background: url('check-icon.png') no-repeat left center;
-      padding-left: 25px;
-      margin-bottom: 5px;
+    ul li {
+      margin-bottom: 8px;
+    }
+
+    .highlight {
+      font-weight: bold;
+      color: #007bff; /* Decent blue color for highlight */
+    }
+
+    .quality-badge {
+      color: #007bff; /* Decent blue color for quality badge */
+      font-style: italic;
+    }
+
+    .online-store-link {
+      color: #007bff; /* Decent blue color for link */
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .online-store-link:hover {
+      text-decoration: underline;
     }
 
     footer {
-      background: #00164a;
-      padding: 15px;
-      color: white;
       text-align: center;
+      padding: 5px;
+      background-color: #343a40;
+      color: #fff;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
     }
 
     footer a {
-      color: #aad4ff;
+      color: #fff;
       text-decoration: none;
-      margin: 0 5px;
+      margin: 0 10px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <div class="logo">PharmaBridge</div>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="products.html">Products</a></li>
-      <li><a href="cart.html">Cart</a></li>
-      <li><a href="orders.html">My Orders</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="profile.html">Profile</a></li>
-    </ul>
-  </nav>
-
-  <section class="about-container">
+  <div class="container">
     <h2>About PharmaBridge</h2>
-    <p>PharmaBridge is dedicated to providing high-quality medicines and healthcare products online. Our goal is to ensure convenient and safe access to essential medical supplies.</p>
+    <p><span class="highlight">PharmaBridge</span>, a proud collaborator with leading healthcare providers, aims to be a highly regarded and a prominent Omni-Channel Pharmacy network in Asia. Our growing network comprises over 5500 potential access points strategically located in key areas across India.</p>
 
-    <h3>Our Mission</h3>
-    <p>To revolutionize healthcare by delivering reliable and affordable medicines to your doorstep with ease.</p>
+    <h3>Accessibility and Reach</h3>
+    <p>Our robust delivery service aims to cover over 19000+ pin codes, ensuring high accessibility to quality medication for people throughout India.</p>
 
-    <h3>Why Choose Us?</h3>
-    <ul>
-      <li>✔️ Authentic and certified medicines</li>
-      <li>✔️ Fast and secure delivery</li>
-      <li>✔️ 24/7 customer support</li>
-      <li>✔️ Easy prescription uploads</li>
-    </ul>
+    <h3>Commitment to Quality</h3>
+    <p>We strive to be <span class="quality-badge">accredited with an International Quality Certification</span>, reflecting our unwavering commitment to providing <span class="highlight">authentic and reasonably priced medication round the clock</span>. Our potential <span class="highlight">24-hour service points</span> and efficient <span class="highlight">delivery network</span> are designed with your convenience in mind, supported by our dedicated <span class="highlight">customer care available at any time of the day</span>.</p>
 
-    <h3>Contact Information</h3>
-    <p><strong>Email:</strong> support@PharmaBridge.com</p>
-    <p><strong>Phone:</strong> +91 08816250864</p>
-    <p><strong>Address:</strong> 3-57, Lachesvaram, Visruni District, India</p>
+    <h3>Experience and Expertise</h3>
+    <p><span class="highlight">Quality is the foundation of our operations</span>. With a focus on continuous improvement in pharmacy operations management, PharmaBridge is dedicated to offering the <span class="highlight">best services in the industry</span>. Our network aims to be consistently <span class="highlight">adequately stocked</span> with a comprehensive range of medicines, over-the-counter (OTC) products, and fast-moving consumer goods (FMCG).</p>
 
-    <h3>Meet Our Team</h3>
-    <p>Our team of healthcare professionals and pharmacists work tirelessly to ensure you receive the best service possible.</p>
-  </section>
+    <h3>Our Team</h3>
+    <p>Our <span class="highlight">qualified and dedicated staff</span> are committed to address your healthcare needs with professionalism and care.</p>
+
+    <h3>Online Convenience</h3>
+    <p>Visit our <a href="#" class="online-store-link">PharmaBridge.com</a>, your <span class="highlight">online destination</span> offering a wide selection of products. Explore our diverse categories, including vitamins and supplements, baby care, personal care, health and nutritional foods, and a range of OTC products.</p>
+
+    <h3>PharmaBridge Branded Products</h3>
+    <p>Furthermore, we aim to offer a variety of PharmaBridge branded products, ensuring quality and value in categories such as vitamins and supplements, health food, oral care, and skincare, among others.</p>
+  </div>
 
   <footer>
-    <p>© 2025 PharmaBridge | <a href="terms.html">Terms & Conditions</a> | <a href="privacy.html">Privacy Policy</a></p>
+    <p>© 2025 PharmaBridge | <a href="#">Terms & Conditions</a> | <a href="#">Privacy Policy</a> | <a href="#">Contact Us</a></p>
   </footer>
 
 </body>

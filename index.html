@@ -20,7 +20,7 @@
             flex-wrap: wrap;
         }
         nav .logo {
-            color: white;
+            color: rgb(255, 255, 255);
             font-size: 24px;
             font-weight: bold;
         }
@@ -34,53 +34,63 @@
             margin: 0 10px;
         }
         nav ul li a {
-            color: white;
+            color: rgb(255, 255, 255);
             text-decoration: none;
             font-weight: bold;
         }
 
-        /* Hero Section with Background Slideshow */
+        /* Hero Section with Stethoscope Background */
         .hero {
             position: relative;
             padding: 50px;
-            color: white;
+            color: rgb(0, 0, 0);
             overflow: hidden;
-        }
-
-        /* Slideshow Container */
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1532938314340-917155965927?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* Stethoscope theme image */
             background-size: cover;
             background-position: center;
-            animation: slide 12s infinite;
-            z-index: -1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow for better readability */
         }
 
-        /* Slideshow Animation */
-        @keyframes slide {
-            0%, 33% { background-image: url('https://imgs.search.brave.com/I0dBUnhRjjUlcXsde2q1uxMssSVjATBNVErZlRV_ZvQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTUz/MjgyNjA3Mi9waG90/by9tZWRpY2luZS1i/cm93bi1nbGFzcy1i/b3R0bGVzLWF0LXBy/b2R1Y3Rpb24tbGlu/ZS5qcGc_cz02MTJ4/NjEyJnc9MCZrPTIw/JmM9dVNPaUtYcE5C/dFV6MGZndm9PUFhM/d1pjQlJMakhSaFpy/c21XT0tnVjd5Yz0'); }
-            33%, 66% { background-image: url('https://imgs.search.brave.com/WfsKeUiUC4DIZmFGuL4e028luillhcZl_-E5H_Rytzk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAxLzU1Lzk5Lzky/LzM2MF9GXzE1NTk5/OTI5M185d3E5OVh3/TzFKVGFBSG5NMTc0/U0V1eFFseUxUQlRB/QS5qcGc'); }
-            66%, 100% { background-image: url('https://imgs.search.brave.com/fmAD3OInrUHBOXteuXnXQeOAa7nRPkBQ6TVlRyKSGzs/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTE2/MTEzMzQ3MC9waG90/by9oZWFydC1zaGFw/ZS1waWxscy5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9TVZy/MXZPdzE0SzF0em9S/TzRmbjJNaE5GNmNh/bTZXaDBmU1kzOG5j/WUNRND0'); }
+        .hero h1 {
+            margin-bottom: 15px;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            color: #00164a; /* Dark text color */
+            padding: 15px 30px;
+            border-radius: 10px;
         }
 
-        /* Search Bar */
+        .hero p {
+            margin-bottom: 15px;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            color: #333;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        /* Search Bar with Stethoscope Icon */
         .hero input {
             padding: 10px;
             width: 60%;
             margin: 10px 0;
             border: 1px solid #ccc;
+            background-image: url('https://cdn-icons-png.flaticon.com/32/54/54481.png'); /* Small stethoscope icon */
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            padding-right: 40px; /* Adjust padding to accommodate the icon */
+            box-sizing: border-box; /* Ensure padding doesn't increase the input width */
         }
         .hero button {
-            padding: 10px;
+            padding: 10px 20px;
             background: #00164a;
             color: white;
             border: none;
             cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
         }
 
         .browse-conditions {
@@ -89,47 +99,77 @@
         }
         .grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(5, 1fr); /* Set exactly 5 columns */
             gap: 15px;
             padding: 20px;
-            max-width: 80%;
+            max-width: 90%; /* Adjust max width */
             margin: auto;
         }
         .category-button {
-            padding: 15px;
-            background: #00164a;
-            color: white;
-            border: none;
+            background: transparent; /* Make background transparent */
+            color: #333; /* Set text color */
+            border: 1px solid #ccc; /* Optional: Add a border for better visibility */
             cursor: pointer;
             font-size: 16px;
-            border-radius: 5px;
-            transition: 0.3s;
-            width: 100%;
-        }
-        .category-button:hover {
-            background: #00164a;
-        }
-        footer {
-            background: #00164a;
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+            width: 100%; /* Let each button take full width of its grid cell */
             padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start; /* Align items to the left */
+            box-sizing: border-box; /* Ensure padding doesn't increase button width */
+        }
+
+        .category-button:hover {
+            background-color: rgba(0, 22, 74, 0.1); /* Optional: Add a slight background on hover */
+        }
+
+        .category-button img {
+            width: 50px; /* Adjust image size as needed */
+            height: 50px;
+            margin-right: 10px; 
+            border-radius: 10px;/* Space between image and text */
+        }
+
+        .category-button span {
+            flex-grow: 1; /* Allow text to take up remaining space */
+            text-align: left; /* Align text to the left within the button */
+        }
+
+        footer {
+            background: #505a71;
+            padding: 20px; /* Increased footer padding */
             color: white;
+            font-size: 0.9em; /* Slightly smaller font */
         }
-        @media (max-width: 1024px) {
-            .grid {
-                grid-template-columns: repeat(3, 1fr); 
-            }
+        footer a {
+            color: #eee;
+            text-decoration: none;
+            margin: 0 8px;
         }
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive adjustments */
         @media (max-width: 768px) {
-            .grid {
-                grid-template-columns: repeat(2, 1fr); 
+            nav ul {
+                margin-top: 10px;
+                width: 100%;
+                justify-content: center;
             }
-        }
-        @media (max-width: 480px) {
-            .grid {
-                grid-template-columns: repeat(1, 1fr);
+            nav ul li {
+                margin: 5px 10px;
+            }
+            .hero {
+                padding: 30px;
             }
             .hero input {
                 width: 80%;
+            }
+            .grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust for smaller screens */
             }
         }
     </style>
@@ -157,37 +197,49 @@
     <section class="browse-conditions">
         <h2>Browse by Health Conditions</h2>
         <div class="grid">
-            <button class="category-button" onclick="navigateTo('diabetes-care')">Diabetes Care</button>
-            <button class="category-button" onclick="navigateTo('cardiac-care')">Cardiac Care</button>
-            <button class="category-button" onclick="navigateTo('stomach-care')">Stomach Care</button>
-            <button class="category-button" onclick="navigateTo('pain-relief')">Pain Relief</button>
-            <button class="category-button" onclick="navigateTo('liver-care')">Liver Care</button>
-            <button class="category-button" onclick="navigateTo('oral-care')">Oral Care</button>
-            <button class="category-button" onclick="navigateTo('respiratory-care')">Respiratory</button>
-            <button class="category-button" onclick="navigateTo('sexual-health')">Sexual Health</button>
-            <button class="category-button" onclick="navigateTo('elderly-care')">Elderly Care</button>
-            <button class="category-button" onclick="navigateTo('cold-immunity')">Cold & Immunity</button>
+            <button class="category-button" onclick="navigateTo('diabetes-care')">
+                <img src="https://imgs.search.brave.com/EValuy8wBteJX7AEBhaBfOxnbaO8Gi_yEannY-XQ-mc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAxNi8x/MC8wOC8yMC81Mi9k/aWFiZXRlcy0xNzI0/NjE3XzY0MC5qcGc" alt="Diabetes">
+                <span>Diabetes Care</span>
+            </button>
+            <button class="category-button" onclick="navigateTo('cardiac-care')">
+                <img src="https://imgs.search.brave.com/e00Um8Y3xGuGqxeKD2U6ULxJzhiTjRw-3Lktz85p0ro/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/YXJ0c2FuZG1pbmRs/YWIub3JnL3dwLWNv/bnRlbnQvdXBsb2Fk/cy8yMDE5LzAyL2hl/YXJ0YmVhdC0xMzkw/MTY3ODc4RkdNXzE0/MDB4NzAwLmpwZw" alt="Cardiac">
+                <span>Cardiac Care</span>
+            </button>
+            <button class="category-button" onclick="navigateTo('stomach-care')">
+                <img src="https://imgs.search.brave.com/Gaz83YqAoUBWfBDSmbfbTI-aZdLs88Ap1Rl85VfowUs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzQ4LzZl/L2I5LzQ4NmViOWY3/N2RhYzc5YmVlNDdk/ZTMwZWI2ZTRiNDE0/LmpwZw" alt="Stomach">
+                <span>Stomach Care</span>
+            </button>
+            <button class="category-button" onclick="navigateTo('pain-relief')">
+                <img src="https://imgs.search.brave.com/KUPPAh-wqnZip4d_0HZdLrSwb5vTBHhjVh51TfF1Qnk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAxLzAwLzE1LzI4/LzM2MF9GXzEwMDE1/MjgxOF9QcVZDWDFi/MU9DY2h3WlZDc0lk/Y1lhOFVwWEEyVVZG/ay5qcGc" alt="Pain">
+                <span>Pain Relief</span>
+            </button>
+            <button class="category-button" onclick="navigateTo('liver-care')">
+                <img src="https://imgs.search.brave.com/jqCABbRuuXiWDJxvz3uJiwfFMFdFcS1Ban5bSux3sHI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAwLzUzLzAzLzE4/LzM2MF9GXzUzMDMx/ODQyXzNFY0JtSFZV/ckk5WWk5U1RnYUxO/Snkwd2lXWVpBOWwz/LmpwZw" alt="Liver">
+                <span>Liver Care</span>
+            </button>
+            <button class="category-button" onclick="navigateTo('oral-care')">
+                <img src="https://imgs.search.brave.com/G-25qIQVBb0jUO_sLM-wX5LMbOxTsRSSCC2McbwEbDM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTIx/ODAzNDQ4NC9waG90/by9kZW50YWwtaGVh/bHRoLWFuZC1jYXJl/LXByb2R1Y3RzLmpw/Zz9zPTYxMng2MTIm/dz0wJms9MjAmYz16/RnUxcjk5ajUwa0l0/b3J0aXMxT3JNYXNv/R25WU2JDcTZQSEFs/c0FDYkxvPQ" alt="Oral">
+                <span>Oral Care</span>
+            </button>
+            <button class="category-button" onclick="navigateTo('respiratory-care')">
+                <img src="https://imgs.search.brave.com/uuUzaw3VhHSY-ZA0wnvqu3SgBPxW0E5kh2TDjijPIhg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAwLzUzLzk3LzMx/LzM2MF9GXzUzOTcz/MTM3X1BrQkVBNkFr/Sjg0NEdTR1hWeUhO/WnNXeENnZHdLNFZa/LmpwZw" alt="Respiratory">
+                <span>Respiratory</span>
+            </button>
+            <button class="category-button" onclick="navigateTo('sexual-health')">
+                <img src="https://imgs.search.brave.com/AbE3XoCSuVnc21X_zeWql-g9hALukPAeEIs1t0JFKf8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC82OS8yNi9z/ZXh1YWwtaGVhbHRo/LWJyZWFzdC1jYW5j/ZXItYXdhcmVuZXNz/LXJpYmJvbi1saW5l/LXZlY3Rvci0zNDI5/NjkyNi5qcGc" alt="Sexual Health">
+                <span>Sexual Health</span>
+            </button>
+            <button class="category-button" onclick="navigateTo('elderly-care')">
+                <img src="https://imgs.search.brave.com/EA1r7XlfhmabAbr-Mx_epHBJRMyoOFI_GdJfsDQfTu0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTM4/NjUxMjQxMC9waG90/by9ob21lLWhlYWx0/aGNhcmUuanBnP3M9/NjEyeDYxMiZ3PTAm/az0yMCZjPVlIeEJZ/NGpMVTNJRnlQaE9a/VS1zb2ROZ0RVNWZV/aTJaT1Exc2FncmJu/ZjQ9" alt="Elderly">
+                <span>Elderly Care</span>
+            </button>
+            <button class="category-button" onclick="navigateTo('cold-immunity')">
+                <img src="https://imgs.search.brave.com/NyMXA-D3Kb_XZfYm__qPg3CflBpe6-YXzCMnAmWueHc/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly93d3cu/ZWFydGguY29tL2Fz/c2V0cy9fbmV4dC9p/bWFnZS8_dXJsPWh0/dHBzOi8vY2ZmMi5l/YXJ0aC5jb20vdXBs/b2Fkcy8yMDE3LzEx/LzI3MTkyOTEzL1do/eS1jYW4lRTIlODAl/OTl0LWh1bWFucy1k/ZXZlbG9wLWltbXVu/aXR5LWFnYWluc3Qt/dGhlLWNvbW1vbi1j/b2xkLmpwZyZ3PTEy/MDAmcT03NQ.jpeg" alt="Cold & Immunity">
+                <span>Cold & Immunity</span>
+            </button>
         </div>
     </section>
 
     <footer>
-        <p>© 2025 PharmaBridge | <a href="terms.html">Privacy Policy</a> | <a href="faq.html">FAQs</a></p>
+        <p>© 2025 PharmaBridge | <a href="privacy.html">Privacy Policy</a> | <a href="faq.html">FAQs</a></p>
     </footer>
-
-    <script>
-        function searchMedicine() {
-            let query = document.getElementById("search-bar").value.toLowerCase();
-            if (query) {
-                alert("Searching for: " + query);
-                window.location.href = "products.html"; 
-            } else {
-                alert("Please enter a medicine name to search.");
-            }
-        }
-
-        function navigateTo(category) {
-            window.location.href = category + ".html";
-        }
-    </script>
-</body>
-</html>
