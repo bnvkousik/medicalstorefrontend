@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - PharmaBridge</title>
+    <style>
+.login-container, .otp-container {
+    text-align: center;
+    padding: 40px;
+    max-width: 350px;
+    margin: auto;
+}
+
+.login-container form, .otp-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-container label, .otp-container label {
+    margin-top: 10px;
+}
+
+.login-container input, .otp-container input {
+    padding: 8px;
+    width: 100%;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-container button, .otp-container button {
+    background: #008080;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.login-container p a, .otp-container p a {
+    color: #008080;
+    text-decoration: none;
+}
+
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">PharmaBridge</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="orders.html">My Orders</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html" class="active">Login</a></li>
+        </ul>
+    </nav>
+
+    <section class="login-container">
+        <h2>Login to PharmaBridge</h2>
+
+        <form id="loginForm">
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <p><a href="#" onclick="showOTPLogin()">Login with OTP</a></p>
+        <p><a href="signup.html">Create an Account</a></p>
+        <p><a href="forgot-password.html">Forgot Password?</a></p>
+    </section>
+    <section class="otp-container" id="otpSection" style="display: none;">
+        <h2>Login with OTP</h2>
+
+        <form id="otpForm">
+            <label for="otpEmail">Enter Email:</label>
+            <input type="email" id="otpEmail" required>
+
+            <button type="button" onclick="sendOTP()">Send OTP</button>
+
+            <label for="otpCode">Enter OTP:</label>
+            <input type="text" id="otpCode" required>
+
+            <button type="submit">Verify OTP</button>
+        </form>
+
+        <p><a href="#" onclick="showPasswordLogin()">Back to Password Login</a></p>
+    </section>
+
+    <footer>
+        <p>© 2025 PharmaBridge | <a href="terms.html">Privacy Policy</a> | <a href="faq.html">FAQs</a></p>
+    </footer>
+
+    <script>
+function showOTPLogin() {
+    document.querySelector(".login-container").style.display = "none";
+    document.querySelector(".otp-container").style.display = "block";
+}
+function showPasswordLogin() {
+    document.querySelector(".login-container").style.display = "block";
+    document.querySelector(".otp-container").style.display = "none";
+}
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    let storedUser = JSON.parse(localStorage.getItem("user")) || { email: "test@example.com", password: "123456" };
+
+    if (email === storedUser.email && password === storedUser.password) {
+        alert("Login Successful!");
+        localStorage.setItem("isLoggedIn", "true");
+        window.location.href = "index.html";
+    } else {
+        alert("Invalid email or password.");
+    }
+});
+
+function sendOTP() {
+    let otpEmail = document.getElementById("otpEmail").value;
+    if (!otpEmail) {
+        alert("Please enter your email.");
+        return;
+    }
+
+    let otp = Math.floor(100000 + Math.random() * 900000);
+    localStorage.setItem("otp", otp);
+    alert(`OTP sent to ${otpEmail}: ${otp}`);
+}
+document.getElementById("otpForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    let enteredOTP = document.getElementById("otpCode").value;
+    let storedOTP = localStorage.getItem("otp");
+
+    if (enteredOTP === storedOTP) {
+        alert("OTP Verified! Login Successful.");
+        localStorage.setItem("isLoggedIn", "true");
+        window.location.href = "index.html";
+    } else {
+        alert("Invalid OTP. Please try again.");
+    }
+});
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - PharmaBridge</title>
+    <style>
+.profile-container {
+    text-align: center;
+    padding: 40px;
+    max-width: 400px;
+    margin: auto;
+}
+
+.profile-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-container label {
+    margin-top: 10px;
+}
+
+.profile-container input {
+    padding: 8px;
+    width: 100%;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.profile-container button {
+    background: #008080;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">PharmaBridge</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="orders.html">My Orders</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="profile.html" class="active">Profile</a></li>
+            <li><a href="#" onclick="logout()">Logout</a></li>
+        </ul>
+    </nav>
+    <section class="profile-container">
+        <h2>My Profile</h2>
+        <form id="profileForm">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" required disabled>
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" required pattern="[0-9]{10}" maxlength="10">
+            <button type="submit">Update Profile</button>
+        </form>
+        <h3>Change Password</h3>
+        <form id="changePasswordForm">
+            <label for="currentPassword">Current Password:</label>
+            <input type="password" id="currentPassword" required>
+            <label for="newPassword">New Password:</label>
+            <input type="password" id="newPassword" required>
+            <button type="submit">Change Password</button>
+        </form>
+    </section>
+    <footer>
+        <p>© 2025 PharmaBridge | <a href="terms.html">Privacy Policy</a> | <a href="faq.html">FAQs</a></p>
+    </footer>
+    <script>
+document.addEventListener("DOMContentLoaded", function() {
+    let user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
+        alert("You are not logged in. Redirecting to login page.");
+        window.location.href = "login.html";
+        return;
+    }
+    document.getElementById("name").value = user.name;
+    document.getElementById("email").value = user.email;
+    document.getElementById("phone").value = user.phone;
+});
+document.getElementById("profileForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    let user = JSON.parse(localStorage.getItem("user"));
+    user.name = document.getElementById("name").value;
+    user.phone = document.getElementById("phone").value;
+    localStorage.setItem("user", JSON.stringify(user));
+    alert("Profile updated successfully!");
+});
+document.getElementById("changePasswordForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    let user = JSON.parse(localStorage.getItem("user"));
+    let currentPassword = document.getElementById("currentPassword").value;
+    let newPassword = document.getElementById("newPassword").value;
+    if (currentPassword !== user.password) {
+        alert("Current password is incorrect.");
+        return;
+    }
+    user.password = newPassword;
+    localStorage.setItem("user", JSON.stringify(user));
+    alert("Password changed successfully!");
+});
+function logout() {
+    localStorage.removeItem("isLoggedIn");
+    alert("Logged out successfully!");
+    window.location.href = "login.html";
+}
+    </script>
+</body>
+</html>

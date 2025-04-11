@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Medical Store</title>
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+nav {
+    background: #007F7F;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav .logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+.hero {
+    background: #e0f7fa;
+    padding: 50px;
+}
+
+.hero input {
+    padding: 10px;
+    width: 60%;
+    margin: 10px 0;
+}
+
+.hero button {
+    padding: 10px 20px;
+    background: #008080;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.categories {
+    padding: 40px;
+}
+
+.category-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.category img {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+}
+
+.upload-prescription {
+    background: #f1f1f1;
+    padding: 40px;
+}
+
+.upload-prescription .btn {
+    padding: 10px 20px;
+    background: #008080;
+    color: white;
+    text-decoration: none;
+}
+footer {
+    background: #008080;
+    padding: 15px;
+    color: white;
+}
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">PharmaBridge</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="upload-prescription.html">Upload Prescription</a></li>
+            <li><a href="orders.html">My Orders</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+    <section class="hero">
+        <h1>Welcome to PharmaBridge</h1>
+        <p>Your trusted online medical store</p>
+        <input type="text" id="search-bar" placeholder="Search for medicines...">
+        <button onclick="searchMedicine()">Search</button>
+    </section>
+    <section class="categories">
+        <h2>Shop by Category</h2>
+        <div class="category-container">
+            <div class="category">
+                <a href="products.html"><img src="pain-relief.jpg" alt="Pain Relief"></a>
+                <p>Pain Relief</p>
+            </div>
+            <div class="category">
+                <a href="products.html"><img src="vitamins.jpg" alt="Vitamins"></a>
+                <p>Vitamins</p>
+            </div>
+            <div class="category">
+                <a href="products.html"><img src="cold-med.jpg" alt="Cold Medication"></a>
+                <p>Cold Medication</p>
+            </div>
+        </div>
+    </section>
+    <section class="upload-prescription">
+        <h2>Need Prescription Medicines?</h2>
+        <p>Upload your doctor’s prescription and get approval.</p>
+        <a href="upload-prescription.html" class="btn">Upload Now</a>
+    </section>
+    <footer>
+        <p>© 2025 PharmaBridge | <a href="terms.html">Privacy Policy</a> | <a href="faq.html">FAQs</a></p>
+    </footer>
+    <script>
+function searchMedicine() {
+    let query = document.getElementById("search-bar").value.toLowerCase();
+    if (query) {
+        alert("Searching for: " + query);
+        window.location.href = "products.html"; 
+    } else {
+        alert("Please enter a medicine name to search.");
+    }
+}
+
+    </script>
+</body>
+</html>

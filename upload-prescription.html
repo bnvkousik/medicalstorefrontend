@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Prescription</title>
+    <style>
+.upload-section {
+    text-align: center;
+    padding: 50px;
+    background: #f9f9f9;
+}
+
+.upload-section input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 20px 0;
+}
+
+.upload-section button {
+    padding: 10px 20px;
+    background: #008080;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#previewArea {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background: #fff;
+    display: inline-block;
+}
+
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">PharmaBridge</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="orders.html">My Orders</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+    <section class="upload-section">
+        <h2>Upload Your Prescription</h2>
+        <p>Please upload a valid doctor's prescription for verification.</p>
+        <input type="file" id="prescriptionInput" accept="image/*, .pdf" onchange="previewFile()">
+                <div id="previewArea">
+            <p>No file chosen</p>
+                </div>
+        <button onclick="submitPrescription()">Submit for Verification</button>
+    </section>
+    <footer>
+        <p>© 2025 PharmaBridge | <a href="terms.html">Privacy Policy</a> | <a href="faq.html">FAQs</a></p>
+    </footer>
+    <script>
+function previewFile() {
+    let fileInput = document.getElementById("prescriptionInput");
+    let previewArea = document.getElementById("previewArea");
+    if (fileInput.files.length > 0) {
+        let file = fileInput.files[0];
+        previewArea.innerHTML = `<p>Selected File: ${file.name}</p>`;
+    } else {
+        previewArea.innerHTML = `<p>No file chosen</p>`;
+    }
+}
+function submitPrescription() {
+    let fileInput = document.getElementById("prescriptionInput");
+    if (fileInput.files.length > 0) {
+        alert("Prescription uploaded successfully! Verification in progress.");
+        window.location.href = "orders.html"; 
+    } else {
+        alert("Please select a file to upload.");
+    }
+}
+    </script>
+</body>
+</html>

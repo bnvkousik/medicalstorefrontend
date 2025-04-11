@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders - PharmaBridge</title>
+   <style>
+.orders-container {
+    text-align: center;
+    padding: 40px;
+}
+
+.order-item {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 10px;
+    background: #f9f9f9;
+}
+
+.order-item h4 {
+    margin: 5px 0;
+}
+
+.order-item p {
+    color: #555;
+}
+
+.order-item .status {
+    font-weight: bold;
+    color: green;
+}
+
+.order-item button {
+    background: #008080;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+   </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">PharmaBridge</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="orders.html" class="active">My Orders</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+
+    <section class="orders-container">
+        <h2>My Orders</h2>
+        <div id="orderList">
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 PharmaBridge | <a href="terms.html">Privacy Policy</a> | <a href="faq.html">FAQs</a></p>
+    </footer>
+
+    <script>
+let orders = JSON.parse(localStorage.getItem("orders")) || [];
+function displayOrders() {
+    let orderList = document.getElementById("orderList");
+    orderList.innerHTML = "";
+    if (orders.length === 0) {
+        orderList.innerHTML = "<p>No orders placed yet.</p>";
+        return;
+    }
+    orders.forEach((order, index) => {
+        let orderItems = order.items.map(item => `${item.name} (x${item.quantity})`).join(", ");
+        orderList.innerHTML += `
+            <div class="order-item">
+                <h4>Order #${index + 1}</h4>
+                <p><strong>Items:</strong> ${orderItems}</p>
+                <p><strong>Total Price:</strong> $${order.total}</p>
+                <p><strong>Status:</strong> <span class="status">${order.status}</span></p>
+                <button onclick="reorder(${index})">Reorder</button>
+            </div>
+        `;
+    });
+}
+function placeOrder(items, total) {
+    let newOrder = { items, total, status: "Processing" };
+    orders.push(newOrder);
+    localStorage.setItem("orders", JSON.stringify(orders));
+}
+function reorder(index) {
+    let reorderedItems = orders[index].items;
+    let total = orders[index].total;
+    placeOrder(reorderedItems, total);
+    alert("Order placed successfully!");
+    displayOrders();
+}
+document.addEventListener("DOMContentLoaded", displayOrders);
+    </script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - PharmaBridge</title>
+    <style>
+.filters {
+    text-align: center;
+    padding: 20px;
+    background: #f1f1f1;
+}
+
+.filters label, .filters select, .filters button {
+    margin: 10px;
+    padding: 8px;
+}
+
+.products-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.product-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: center;
+    background: white;
+}
+
+.product-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.product-card button {
+    padding: 10px;
+    background: #008080;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">PharmaBridge</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="upload-prescription.html">Upload Prescription</a></li>
+            <li><a href="orders.html">My Orders</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+
+    <section class="filters">
+        <h2>Filter Products</h2>
+        <label>
+            <input type="checkbox" id="prescriptionFilter"> Prescription Required
+        </label>
+        <label>
+            <select id="categoryFilter">
+                <option value="all">All Categories</option>
+                <option value="pain-relief">Pain Relief</option>
+                <option value="vitamins">Vitamins</option>
+                <option value="cold-medication">Cold Medication</option>
+            </select>
+        </label>
+        <button onclick="applyFilters()">Apply Filters</button>
+    </section>
+
+    <section class="products-container" id="productList">
+    </section>
+
+    <footer>
+        <p>© 2025 PharmaBridge | <a href="terms.html">Privacy Policy</a> | <a href="faq.html">FAQs</a></p>
+    </footer>
+
+    <script>
+const products = [
+    { id: 1, name: "Pain Reliever", category: "pain-relief", price: "$10", prescription: false, img: "pain-relief.jpg" },
+    { id: 2, name: "Vitamin C", category: "vitamins", price: "$15", prescription: false, img: "vitamins.jpg" },
+    { id: 3, name: "Cold Medicine", category: "cold-medication", price: "$12", prescription: true, img: "cold-med.jpg" }
+];
+
+function displayProducts(filteredProducts) {
+    let productList = document.getElementById("productList");
+    productList.innerHTML = "";
+    filteredProducts.forEach(product => {
+        productList.innerHTML += `
+            <div class="product-card">
+                <img src="${product.img}" alt="${product.name}">
+                <h3>${product.name}</h3>
+                <p>${product.price}</p>
+                <p>${product.prescription ? "Prescription Required" : "No Prescription Needed"}</p>
+                <button onclick="addToCart(${product.id})">Add to Cart</button>
+                <a href="product-detail.html?id=${product.id}">View Details</a>
+            </div>
+        `;
+    });
+}
+function applyFilters() {
+    let category = document.getElementById("categoryFilter").value;
+    let prescriptionRequired = document.getElementById("prescriptionFilter").checked;
+    let filteredProducts = products.filter(product => {
+        return (category === "all" || product.category === category) && 
+               (!prescriptionRequired || product.prescription);
+    });
+    displayProducts(filteredProducts);
+}
+function addToCart(productId) {
+    alert(`Product ID ${productId} added to cart!`);
+}
+document.addEventListener("DOMContentLoaded", () => displayProducts(products));
+    </script>
+</body>
+</html>

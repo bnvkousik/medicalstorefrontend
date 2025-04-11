@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - PharmaBridge</title>
+    <style>
+.checkout-container {
+    text-align: center;
+    padding: 40px;
+}
+
+#orderSummary {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.checkout-container form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: auto;
+}
+
+.checkout-container label {
+    margin-top: 10px;
+}
+
+.checkout-container input, textarea {
+    padding: 8px;
+    width: 100%;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.checkout-container button {
+    background: #008080;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">PharmaBridge</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="orders.html">My Orders</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+
+    <section class="checkout-container">
+        <h2>Checkout</h2>
+
+        <div id="orderSummary">
+        </div>
+
+        <form id="checkoutForm">
+            <h3>Shipping Details</h3>
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" required>
+            <label for="address">Address:</label>
+            <textarea id="address" required></textarea>
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" required>
+            <h3>Payment Method</h3>
+            <label><input type="radio" name="payment" value="card" required> Credit/Debit Card</label>
+            <label><input type="radio" name="payment" value="cod" required> Cash on Delivery</label>
+            <button type="submit">Place Order</button>
+        </form>
+    </section>
+    <footer>
+        <p>© 2025 PharmaBridge | <a href="terms.html">Privacy Policy</a> | <a href="faq.html">FAQs</a></p>
+    </footer>
+
+    <script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+function displayOrderSummary() {
+    let orderSummary = document.getElementById("orderSummary");
+    let total = 0;
+    orderSummary.innerHTML = "<h3>Order Summary</h3>";
+
+    if (cart.length === 0) {
+        orderSummary.innerHTML += "<p>Your cart is empty.</p>";
+        return;
+    }
+
+    cart.forEach(item => {
+        total += item.price * item.quantity;
+        orderSummary.innerHTML += `
+            <p>${item.name} (x${item.quantity}) - $${item.price * item.quantity}</p>
+        `;
+    });
+
+    orderSummary.innerHTML += `<h4>Total: $${total}</h4>`;
+}
+
+document.getElementById("checkoutForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    let name = document.getElementById("name").value;
+    let address = document.getElementById("address").value;
+    let phone = document.getElementById("phone").value;
+    let paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+
+    if (!name || !address || !phone) {
+        alert("Please fill all the details.");
+        return;
+    }
+
+    alert(`Order placed successfully! Payment Method: ${paymentMethod}`);
+    localStorage.removeItem("cart"); // Clear Cart
+    window.location.href = "orders.html"; // Redirect to Orders Page
+});
+
+document.addEventListener("DOMContentLoaded", displayOrderSummary);
+
+    </script>
+</body>
+</html>
