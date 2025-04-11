@@ -1,92 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup - PharmaBridge</title>
-    <style>
-.signup-container {
-    text-align: center;
-    padding: 40px;
-    max-width: 350px;
-    margin: auto;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Signup - PharmaBridge</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
 
-.signup-container form {
-    display: flex;
-    flex-direction: column;
-}
+    .signup-container {
+      text-align: center;
+      padding: 40px;
+      max-width: 450px;
+      margin: 40px auto;
+    }
 
-.signup-container label {
-    margin-top: 10px;
-}
+    .signup-box {
+      padding: 30px;
+      border: 2px solid #00164a;
+      border-radius: 10px;
+      background-color: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: 0.3s ease;
+    }
 
-.signup-container input {
-    padding: 8px;
-    width: 100%;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
+    .signup-box:hover {
+      box-shadow: 0 10px 25px rgba(0, 22, 74, 0.3);
+      transform: translateY(-5px);
+    }
 
-.signup-container button {
-    background: #008080;
-    color: white;
-    border: none;
-    padding: 10px;
-    margin-top: 20px;
-    cursor: pointer;
-}
+    form {
+      display: flex;
+      flex-direction: column;
+    }
 
-    </style>
+    label {
+      margin-top: 15px;
+      text-align: left;
+    }
+
+    input {
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background: #008080;
+      color: white;
+      border: none;
+      padding: 10px;
+      margin-top: 20px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #006666;
+    }
+
+    nav {
+      background: #00164a;
+      padding: 15px;
+      display: flex;
+      height: 60px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav .logo {
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+      margin: 0 10px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #00164a;
+      padding: 15px;
+      color: white;
+      text-align: center;
+    }
+
+    footer a {
+      color: #aad4ff;
+      text-decoration: none;
+    }
+
+    p a {
+      color: #00164a;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
-    <nav>
-        <div class="logo">PharmaBridge</div>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="products.html">Products</a></li>
-            <li><a href="cart.html">Cart</a></li>
-            <li><a href="orders.html">My Orders</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="login.html">Login</a></li>
-        </ul>
-    </nav>
-    <section class="signup-container">
-        <h2>Create an Account</h2>
-        <form id="signupForm">
-            <label for="name">Full Name:</label>
-            <input type="text" id="name" required>
-            <label for="email">Email:</label>
-            <input type="email" id="email" required>
-            <label for="phone">Phone Number:</label>
-            <input type="tel" id="phone" required pattern="[0-9]{10}" maxlength="10">
-            <label for="password">Password:</label>
-            <input type="password" id="password" required>
-            <button type="submit">Sign Up</button>
-        </form>
-        <p>Already have an account? <a href="login.html">Login Here</a></p>
-    </section>
-    <footer>
-        <p>© 2025 PharmaBridge | <a href="terms.html">Privacy Policy</a> | <a href="faq.html">FAQs</a></p>
-    </footer>
-    <script>
-document.getElementById("signupForm").addEventListener("submit", function(event) {
-    event.preventDefault();
-    let name = document.getElementById("name").value;
-    let email = document.getElementById("email").value;
-    let phone = document.getElementById("phone").value;
-    let password = document.getElementById("password").value;
-    let existingUser = JSON.parse(localStorage.getItem("user"));
-    if (existingUser && existingUser.email === email) {
+  <nav>
+    <div class="logo">PharmaBridge</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="cart.html">Cart</a></li>
+      <li><a href="orders.html">My Orders</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
+
+  <section class="signup-container">
+    <h2>Create an Account</h2>
+    <div class="signup-box">
+      <form id="signupForm">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" required pattern="[0-9]{10}" maxlength="10">
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" required>
+
+        <button type="submit">Sign Up</button>
+      </form>
+      <p>Already have an account? <a href="login.html">Login Here</a></p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 PharmaBridge | <a href="terms.html">Privacy Policy</a> | <a href="faq.html">FAQs</a></p>
+  </footer>
+
+  <script>
+    document.getElementById("signupForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      let name = document.getElementById("name").value;
+      let email = document.getElementById("email").value;
+      let phone = document.getElementById("phone").value;
+      let password = document.getElementById("password").value;
+
+      let existingUser = JSON.parse(localStorage.getItem("user"));
+      if (existingUser && existingUser.email === email) {
         alert("Email is already registered. Please login.");
         return;
-    }
-    let user = { name, email, phone, password };
-    localStorage.setItem("user", JSON.stringify(user));
-    alert("Signup successful! You can now log in.");
-    window.location.href = "login.html";
-});
-    </script>
+      }
+
+      let user = { name, email, phone, password };
+      localStorage.setItem("user", JSON.stringify(user));
+      alert("Signup successful! You can now log in.");
+      window.location.href = "login.html";
+    });
+  </script>
 </body>
 </html>

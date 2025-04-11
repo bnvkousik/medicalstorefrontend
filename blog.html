@@ -1,93 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - PharmaBridge</title>
-    <style>
-.blog-container {
-    text-align: center;
-    padding: 40px;
-    max-width: 900px;
-    margin: auto;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog - PharmaBridge</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
 
-.blog-container h2 {
-    margin-bottom: 20px;
-}
+    nav {
+      background: #00164a;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-.blog-post {
-    background: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    text-align: left;
-}
+    .logo {
+      color: white;
+      font-size: 26px;
+      font-weight: bold;
+    }
 
-.blog-post img {
-    width: 100%;
-    border-radius: 10px;
-}
+    nav ul {
+      list-style: none;
+      display: flex;
+      padding: 0;
+      margin: 0;
+    }
 
-.blog-post h3 {
-    margin: 10px 0;
-}
+    nav ul li {
+      margin: 0 12px;
+    }
 
-.blog-post p {
-    font-size: 16px;
-    color: #555;
-}
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 15px;
+      padding: 6px 8px;
+      transition: background 0.3s;
+    }
 
-.blog-post a {
-    color: #007BFF;
-    text-decoration: none;
-    font-weight: bold;
-}
+    nav ul li a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+    }
 
-    </style>
+    .blog-container {
+      text-align: center;
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .blog-container h2 {
+      margin-bottom: 20px;
+      color: #00164a;
+    }
+
+    .blog-post {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      text-align: left;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .blog-post:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .blog-post img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .blog-post h3 {
+      margin: 10px 0;
+    }
+
+    .blog-post p {
+      font-size: 16px;
+      color: #555;
+    }
+
+    .blog-post a {
+      color: #00164a;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #00164a;
+      padding: 15px;
+      color: white;
+      text-align: center;
+    }
+
+    footer a {
+      color: #aad4ff;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+  </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">PharmaBridge</div>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="products.html">Products</a></li>
-            <li><a href="cart.html">Cart</a></li>
-            <li><a href="orders.html">My Orders</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="profile.html">Profile</a></li>
-        </ul>
-    </nav>
+  <nav>
+    <div class="logo">PharmaBridge</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="cart.html">Cart</a></li>
+      <li><a href="orders.html">My Orders</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="profile.html">Profile</a></li>
+    </ul>
+  </nav>
 
-    <section class="blog-container">
-        <h2>Health & Wellness Blog</h2>
+  <section class="blog-container">
+    <h2>Health & Wellness Blog</h2>
 
-        <article class="blog-post">
-            <img src="images/healthy-lifestyle.jpg" alt="Healthy Lifestyle">
-            <h3>5 Tips for a Healthy Lifestyle</h3>
-            <p>Discover simple habits that can improve your overall well-being...</p>
-            <a href="#">Read More</a>
-        </article>
+    <article class="blog-post">
+      <img src="images/healthy-lifestyle.jpg" alt="Healthy Lifestyle">
+      <h3>5 Tips for a Healthy Lifestyle</h3>
+      <p>Discover simple habits that can improve your overall well-being...</p>
+      <a href="#">Read More</a>
+    </article>
 
-        <article class="blog-post">
-            <img src="images/immunity-boost.jpg" alt="Boost Immunity">
-            <h3>How to Boost Your Immunity Naturally</h3>
-            <p>Learn about vitamins and foods that can strengthen your immune system...</p>
-            <a href="#">Read More</a>
-        </article>
+    <article class="blog-post">
+      <img src="images/immunity-boost.jpg" alt="Boost Immunity">
+      <h3>How to Boost Your Immunity Naturally</h3>
+      <p>Learn about vitamins and foods that can strengthen your immune system...</p>
+      <a href="#">Read More</a>
+    </article>
 
-        <article class="blog-post">
-            <img src="images/mental-health.jpg" alt="Mental Health">
-            <h3>The Importance of Mental Health</h3>
-            <p>Mental well-being is as important as physical health. Find out why...</p>
-            <a href="#">Read More</a>
-        </article>
-    </section>
+    <article class="blog-post">
+      <img src="images/mental-health.jpg" alt="Mental Health">
+      <h3>The Importance of Mental Health</h3>
+      <p>Mental well-being is as important as physical health. Find out why...</p>
+      <a href="#">Read More</a>
+    </article>
+  </section>
 
-    <footer>
-        <p>© 2025 PharmaBridge | <a href="terms.html">Terms & Conditions</a> | <a href="privacy.html">Privacy Policy</a></p>
-    </footer>
+  <footer>
+    <p>© 2025 PharmaBridge | <a href="terms.html">Terms & Conditions</a> | <a href="privacy.html">Privacy Policy</a></p>
+  </footer>
 
 </body>
 </html>

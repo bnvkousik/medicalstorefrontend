@@ -1,130 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Details - PharmaBridge</title>
-    <style>
-.product-detail {
-    text-align: center;
-    padding: 40px;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Details - PharmaBridge</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
 
-.product-detail img {
-    width: 250px;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 10px;
-}
+    nav {
+      background: #00164a;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-.product-detail h2 {
-    margin-top: 20px;
-}
+    nav .logo {
+      color: white;
+      font-size: 26px;
+      font-weight: bold;
+    }
 
-.product-detail p {
-    font-size: 18px;
-    margin: 10px 0;
-}
+    nav ul {
+      list-style: none;
+      display: flex;
+      padding: 0;
+      margin: 0;
+    }
 
-.product-detail .price {
-    font-size: 22px;
-    font-weight: bold;
-    color: #008080;
-}
+    nav ul li {
+      margin: 0 12px;
+    }
 
-.product-detail button {
-    padding: 10px 20px;
-    margin: 10px;
-    border: none;
-    cursor: pointer;
-}
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 15px;
+      padding: 6px 8px;
+      transition: background 0.3s;
+    }
 
-.add-to-cart {
-    background: #008080;
-    color: white;
-}
+    nav ul li a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+    }
 
-.buy-now {
-    background: #ff5733;
-    color: white;
-}
+    .product-detail {
+      text-align: center;
+      padding: 40px;
+    }
 
-.back-to-products {
-    text-align: center;
-    margin: 20px;
-}
+    .product-detail img {
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
 
-.back-to-products a {
-    color: #008080;
-    text-decoration: none;
-    font-weight: bold;
-}
+    .product-detail h2 {
+      margin-top: 20px;
+    }
 
-    </style>
+    .product-detail p {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+
+    .product-detail .price {
+      font-size: 22px;
+      font-weight: bold;
+      color: #00164a;
+    }
+
+    .product-detail button {
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .add-to-cart {
+      background: #00164a;
+      color: white;
+    }
+
+    .buy-now {
+      background: #ff5733;
+      color: white;
+    }
+
+    .back-to-products {
+      text-align: center;
+      margin: 20px;
+    }
+
+    .back-to-products a {
+      color: #00164a;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #00164a;
+      padding: 15px;
+      color: white;
+      text-align: center;
+    }
+
+    footer a {
+      color: #aad4ff;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+  </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">PharmaBridge</div>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="products.html">Products</a></li>
-            <li><a href="upload-prescription.html">Upload Prescription</a></li>
-            <li><a href="orders.html">My Orders</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="login.html">Login</a></li>
-        </ul>
-    </nav>
+  <nav>
+    <div class="logo">PharmaBridge</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="upload-prescription.html">Upload Prescription</a></li>
+      <li><a href="orders.html">My Orders</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
 
-    <section class="product-detail" id="productDetail">
-    </section>
+  <section class="product-detail" id="productDetail">
+  </section>
 
-    <div class="back-to-products">
-        <a href="products.html">← Back to Products</a>
-    </div>
+  <div class="back-to-products">
+    <a href="products.html">← Back to Products</a>
+  </div>
 
-    <footer>
-        <p>© 2025 PharmaBridge | <a href="terms.html">Privacy Policy</a> | <a href="faq.html">FAQs</a></p>
-    </footer>
+  <footer>
+    <p>© 2025 PharmaBridge | <a href="terms.html">Privacy Policy</a> | <a href="faq.html">FAQs</a></p>
+  </footer>
 
-    <script>
-const products = [
-    { id: 1, name: "Pain Reliever", category: "pain-relief", price: "$10", prescription: false, img: "pain-relief.jpg", description: "Effective pain relief medicine." },
-    { id: 2, name: "Vitamin C", category: "vitamins", price: "$15", prescription: false, img: "vitamins.jpg", description: "Boosts immunity and keeps you healthy." },
-    { id: 3, name: "Cold Medicine", category: "cold-medication", price: "$12", prescription: true, img: "cold-med.jpg", description: "Relieves cold and flu symptoms." }
-];
+  <script>
+    const products = [
+      { id: 1, name: "Pain Reliever", category: "pain-relief", price: "$10", prescription: false, img: "pain-relief.jpg", description: "Effective pain relief medicine." },
+      { id: 2, name: "Vitamin C", category: "vitamins", price: "$15", prescription: false, img: "vitamins.jpg", description: "Boosts immunity and keeps you healthy." },
+      { id: 3, name: "Cold Medicine", category: "cold-medication", price: "$12", prescription: true, img: "cold-med.jpg", description: "Relieves cold and flu symptoms." }
+    ];
 
-function loadProductDetails() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const productId = urlParams.get("id");
-    const product = products.find(p => p.id == productId);
+    function loadProductDetails() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const productId = urlParams.get("id");
+      const product = products.find(p => p.id == productId);
 
-    if (product) {
+      if (product) {
         document.getElementById("productDetail").innerHTML = `
-            <img src="${product.img}" alt="${product.name}">
-            <h2>${product.name}</h2>
-            <p class="price">${product.price}</p>
-            <p>${product.description}</p>
-            <p>${product.prescription ? "Prescription Required" : "No Prescription Needed"}</p>
-            <button class="add-to-cart" onclick="addToCart(${product.id})">Add to Cart</button>
-            <button class="buy-now" onclick="buyNow(${product.id})">Buy Now</button>
+          <img src="${product.img}" alt="${product.name}">
+          <h2>${product.name}</h2>
+          <p class="price">${product.price}</p>
+          <p>${product.description}</p>
+          <p>${product.prescription ? "Prescription Required" : "No Prescription Needed"}</p>
+          <button class="add-to-cart" onclick="addToCart(${product.id})">Add to Cart</button>
+          <button class="buy-now" onclick="buyNow(${product.id})">Buy Now</button>
         `;
-    } else {
+      } else {
         document.getElementById("productDetail").innerHTML = "<p>Product not found.</p>";
+      }
     }
-}
 
-function addToCart(productId) {
-    alert(`Product ID ${productId} added to cart!`);
-}
+    function addToCart(productId) {
+      alert(`Product ID ${productId} added to cart!`);
+    }
 
-function buyNow(productId) {
-    alert(`Redirecting to checkout for product ID ${productId}`);
-    window.location.href = "checkout.html";
-}
+    function buyNow(productId) {
+      alert(`Redirecting to checkout for product ID ${productId}`);
+      window.location.href = "checkout.html";
+    }
 
-document.addEventListener("DOMContentLoaded", loadProductDetails);
-
-    </script>
+    document.addEventListener("DOMContentLoaded", loadProductDetails);
+  </script>
 </body>
 </html>

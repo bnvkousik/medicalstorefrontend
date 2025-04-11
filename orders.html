@@ -1,105 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Orders - PharmaBridge</title>
-   <style>
-.orders-container {
-    text-align: center;
-    padding: 40px;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Orders - PharmaBridge</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
 
-.order-item {
-    border: 1px solid #ddd;
-    padding: 15px;
-    margin: 10px;
-    background: #f9f9f9;
-}
+    nav {
+      background: #00164a;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-.order-item h4 {
-    margin: 5px 0;
-}
+    nav .logo {
+      color: white;
+      font-size: 26px;
+      font-weight: bold;
+    }
 
-.order-item p {
-    color: #555;
-}
+    nav ul {
+      list-style: none;
+      display: flex;
+      padding: 0;
+      margin: 0;
+    }
 
-.order-item .status {
-    font-weight: bold;
-    color: green;
-}
+    nav ul li {
+      margin: 0 12px;
+    }
 
-.order-item button {
-    background: #008080;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    cursor: pointer;
-    margin-top: 10px;
-}
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 15px;
+      padding: 6px 8px;
+      transition: background 0.3s;
+    }
 
-   </style>
+    nav ul li a:hover,
+    nav ul li a.active {
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+    }
+
+    .orders-container {
+      text-align: center;
+      padding: 40px;
+      min-height: 59vh;
+    }
+
+    .order-item {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin: 10px auto;
+      background: #f9f9f9;
+      max-width: 600px;
+      text-align: left;
+    }
+
+    .order-item h4 {
+      margin: 5px 0;
+    }
+
+    .order-item p {
+      color: #555;
+    }
+
+    .order-item .status {
+      font-weight: bold;
+      color: green;
+    }
+
+    .order-item button {
+      background: #00164a;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      cursor: pointer;
+      margin-top: 10px;
+      border-radius: 5px;
+    }
+
+    footer {
+      background: #00164a;
+      padding: 15px;
+      color: white;
+      text-align: center;
+    }
+
+    footer a {
+      color: #aad4ff;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+  </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">PharmaBridge</div>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="products.html">Products</a></li>
-            <li><a href="cart.html">Cart</a></li>
-            <li><a href="orders.html" class="active">My Orders</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="login.html">Login</a></li>
-        </ul>
-    </nav>
+  <nav>
+    <div class="logo">PharmaBridge</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="cart.html">Cart</a></li>
+      <li><a href="orders.html" class="active">My Orders</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
 
-    <section class="orders-container">
-        <h2>My Orders</h2>
-        <div id="orderList">
-        </div>
-    </section>
+  <section class="orders-container">
+    <h2>My Orders</h2>
+    <div id="orderList"></div>
+  </section>
 
-    <footer>
-        <p>© 2025 PharmaBridge | <a href="terms.html">Privacy Policy</a> | <a href="faq.html">FAQs</a></p>
-    </footer>
+  <footer>
+    <p>© 2025 PharmaBridge | <a href="terms.html">Privacy Policy</a> | <a href="faq.html">FAQs</a></p>
+  </footer>
 
-    <script>
-let orders = JSON.parse(localStorage.getItem("orders")) || [];
-function displayOrders() {
-    let orderList = document.getElementById("orderList");
-    orderList.innerHTML = "";
-    if (orders.length === 0) {
+  <script>
+    let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+    function displayOrders() {
+      let orderList = document.getElementById("orderList");
+      orderList.innerHTML = "";
+      if (orders.length === 0) {
         orderList.innerHTML = "<p>No orders placed yet.</p>";
         return;
-    }
-    orders.forEach((order, index) => {
+      }
+
+      orders.forEach((order, index) => {
         let orderItems = order.items.map(item => `${item.name} (x${item.quantity})`).join(", ");
         orderList.innerHTML += `
-            <div class="order-item">
-                <h4>Order #${index + 1}</h4>
-                <p><strong>Items:</strong> ${orderItems}</p>
-                <p><strong>Total Price:</strong> $${order.total}</p>
-                <p><strong>Status:</strong> <span class="status">${order.status}</span></p>
-                <button onclick="reorder(${index})">Reorder</button>
-            </div>
+          <div class="order-item">
+            <h4>Order #${index + 1}</h4>
+            <p><strong>Items:</strong> ${orderItems}</p>
+            <p><strong>Total Price:</strong> $${order.total}</p>
+            <p><strong>Status:</strong> <span class="status">${order.status}</span></p>
+            <button onclick="reorder(${index})">Reorder</button>
+          </div>
         `;
-    });
-}
-function placeOrder(items, total) {
-    let newOrder = { items, total, status: "Processing" };
-    orders.push(newOrder);
-    localStorage.setItem("orders", JSON.stringify(orders));
-}
-function reorder(index) {
-    let reorderedItems = orders[index].items;
-    let total = orders[index].total;
-    placeOrder(reorderedItems, total);
-    alert("Order placed successfully!");
-    displayOrders();
-}
-document.addEventListener("DOMContentLoaded", displayOrders);
-    </script>
+      });
+    }
+
+    function placeOrder(items, total) {
+      let newOrder = { items, total, status: "Processing" };
+      orders.push(newOrder);
+      localStorage.setItem("orders", JSON.stringify(orders));
+    }
+
+    function reorder(index) {
+      let reorderedItems = orders[index].items;
+      let total = orders[index].total;
+      placeOrder(reorderedItems, total);
+      alert("Order placed successfully!");
+      displayOrders();
+    }
+
+    document.addEventListener("DOMContentLoaded", displayOrders);
+  </script>
 </body>
 </html>

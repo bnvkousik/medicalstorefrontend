@@ -1,131 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout - PharmaBridge</title>
-    <style>
-.checkout-container {
-    text-align: center;
-    padding: 40px;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout - PharmaBridge</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
 
-#orderSummary {
-    border: 1px solid #ddd;
-    padding: 20px;
-    margin-bottom: 20px;
-}
+    nav {
+      background: #00164a;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-.checkout-container form {
-    display: flex;
-    flex-direction: column;
-    max-width: 400px;
-    margin: auto;
-}
+    nav .logo {
+      color: white;
+      font-size: 26px;
+      font-weight: bold;
+    }
 
-.checkout-container label {
-    margin-top: 10px;
-}
+    nav ul {
+      list-style: none;
+      display: flex;
+      padding: 0;
+      margin: 0;
+    }
 
-.checkout-container input, textarea {
-    padding: 8px;
-    width: 100%;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
+    nav ul li {
+      margin: 0 12px;
+    }
 
-.checkout-container button {
-    background: #008080;
-    color: white;
-    border: none;
-    padding: 10px;
-    margin-top: 20px;
-    cursor: pointer;
-}
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 15px;
+      padding: 6px 8px;
+      transition: background 0.3s;
+    }
 
-    </style>
+    nav ul li a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+    }
+
+    .checkout-container {
+      text-align: center;
+      padding: 40px;
+    }
+
+    #orderSummary {
+      border: 1px solid #ddd;
+      padding: 20px;
+      margin-bottom: 20px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .checkout-container form {
+      display: flex;
+      flex-direction: column;
+      max-width: 400px;
+      margin: auto;
+    }
+
+    .checkout-container label {
+      margin-top: 10px;
+      text-align: left;
+    }
+
+    .checkout-container input, textarea {
+      padding: 8px;
+      width: 100%;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .checkout-container button {
+      background: #00164a;
+      color: white;
+      border: none;
+      padding: 10px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+
+    footer {
+      background: #00164a;
+      padding: 15px;
+      color: white;
+      text-align: center;
+    }
+
+    footer a {
+      color: #aad4ff;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+  </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">PharmaBridge</div>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="products.html">Products</a></li>
-            <li><a href="cart.html">Cart</a></li>
-            <li><a href="orders.html">My Orders</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="login.html">Login</a></li>
-        </ul>
-    </nav>
+  <nav>
+    <div class="logo">PharmaBridge</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="cart.html">Cart</a></li>
+      <li><a href="orders.html">My Orders</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
 
-    <section class="checkout-container">
-        <h2>Checkout</h2>
+  <section class="checkout-container">
+    <h2>Checkout</h2>
 
-        <div id="orderSummary">
-        </div>
+    <div id="orderSummary"></div>
 
-        <form id="checkoutForm">
-            <h3>Shipping Details</h3>
-            <label for="name">Full Name:</label>
-            <input type="text" id="name" required>
-            <label for="address">Address:</label>
-            <textarea id="address" required></textarea>
-            <label for="phone">Phone Number:</label>
-            <input type="tel" id="phone" required>
-            <h3>Payment Method</h3>
-            <label><input type="radio" name="payment" value="card" required> Credit/Debit Card</label>
-            <label><input type="radio" name="payment" value="cod" required> Cash on Delivery</label>
-            <button type="submit">Place Order</button>
-        </form>
-    </section>
-    <footer>
-        <p>© 2025 PharmaBridge | <a href="terms.html">Privacy Policy</a> | <a href="faq.html">FAQs</a></p>
-    </footer>
+    <form id="checkoutForm">
+      <h3>Shipping Details</h3>
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" required>
 
-    <script>
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-function displayOrderSummary() {
-    let orderSummary = document.getElementById("orderSummary");
-    let total = 0;
-    orderSummary.innerHTML = "<h3>Order Summary</h3>";
+      <label for="address">Address:</label>
+      <textarea id="address" required></textarea>
 
-    if (cart.length === 0) {
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" required>
+
+      <h3>Payment Method</h3>
+      <label><input type="radio" name="payment" value="card" required> Credit/Debit Card</label>
+      <label><input type="radio" name="payment" value="cod" required> Cash on Delivery</label>
+
+      <button type="submit">Place Order</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2025 PharmaBridge | <a href="terms.html">Privacy Policy</a> | <a href="faq.html">FAQs</a></p>
+  </footer>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function displayOrderSummary() {
+      let orderSummary = document.getElementById("orderSummary");
+      let total = 0;
+      orderSummary.innerHTML = "<h3>Order Summary</h3>";
+
+      if (cart.length === 0) {
         orderSummary.innerHTML += "<p>Your cart is empty.</p>";
         return;
-    }
+      }
 
-    cart.forEach(item => {
+      cart.forEach(item => {
         total += item.price * item.quantity;
         orderSummary.innerHTML += `
-            <p>${item.name} (x${item.quantity}) - $${item.price * item.quantity}</p>
+          <p>${item.name} (x${item.quantity}) - $${item.price * item.quantity}</p>
         `;
-    });
+      });
 
-    orderSummary.innerHTML += `<h4>Total: $${total}</h4>`;
-}
-
-document.getElementById("checkoutForm").addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    let name = document.getElementById("name").value;
-    let address = document.getElementById("address").value;
-    let phone = document.getElementById("phone").value;
-    let paymentMethod = document.querySelector('input[name="payment"]:checked').value;
-
-    if (!name || !address || !phone) {
-        alert("Please fill all the details.");
-        return;
+      orderSummary.innerHTML += `<h4>Total: $${total}</h4>`;
     }
 
-    alert(`Order placed successfully! Payment Method: ${paymentMethod}`);
-    localStorage.removeItem("cart"); // Clear Cart
-    window.location.href = "orders.html"; // Redirect to Orders Page
-});
+    document.getElementById("checkoutForm").addEventListener("submit", function(event) {
+      event.preventDefault();
 
-document.addEventListener("DOMContentLoaded", displayOrderSummary);
+      let name = document.getElementById("name").value;
+      let address = document.getElementById("address").value;
+      let phone = document.getElementById("phone").value;
+      let paymentMethod = document.querySelector('input[name="payment"]:checked').value;
 
-    </script>
+      if (!name || !address || !phone) {
+        alert("Please fill all the details.");
+        return;
+      }
+
+      alert(`Order placed successfully! Payment Method: ${paymentMethod}`);
+      localStorage.removeItem("cart");
+      window.location.href = "orders.html";
+    });
+
+    document.addEventListener("DOMContentLoaded", displayOrderSummary);
+  </script>
 </body>
 </html>

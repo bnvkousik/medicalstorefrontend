@@ -3,93 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Medical Store</title>
+    <title>PharmaBridge - Online Medical Store</title>
     <style>
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-}
-nav {
-    background: #007F7F;
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        nav {
+            background: #00164a;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        nav .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+        nav ul li {
+            margin: 0 10px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
 
-nav .logo {
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-}
+        /* Hero Section with Background Slideshow */
+        .hero {
+            position: relative;
+            padding: 50px;
+            color: white;
+            overflow: hidden;
+        }
 
-nav ul {
-    list-style: none;
-    display: flex;
-    padding: 0;
-}
+        /* Slideshow Container */
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            animation: slide 12s infinite;
+            z-index: -1;
+        }
 
-nav ul li {
-    margin: 0 10px;
-}
+        /* Slideshow Animation */
+        @keyframes slide {
+            0%, 33% { background-image: url('https://imgs.search.brave.com/I0dBUnhRjjUlcXsde2q1uxMssSVjATBNVErZlRV_ZvQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTUz/MjgyNjA3Mi9waG90/by9tZWRpY2luZS1i/cm93bi1nbGFzcy1i/b3R0bGVzLWF0LXBy/b2R1Y3Rpb24tbGlu/ZS5qcGc_cz02MTJ4/NjEyJnc9MCZrPTIw/JmM9dVNPaUtYcE5C/dFV6MGZndm9PUFhM/d1pjQlJMakhSaFpy/c21XT0tnVjd5Yz0'); }
+            33%, 66% { background-image: url('https://imgs.search.brave.com/WfsKeUiUC4DIZmFGuL4e028luillhcZl_-E5H_Rytzk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAxLzU1Lzk5Lzky/LzM2MF9GXzE1NTk5/OTI5M185d3E5OVh3/TzFKVGFBSG5NMTc0/U0V1eFFseUxUQlRB/QS5qcGc'); }
+            66%, 100% { background-image: url('https://imgs.search.brave.com/fmAD3OInrUHBOXteuXnXQeOAa7nRPkBQ6TVlRyKSGzs/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTE2/MTEzMzQ3MC9waG90/by9oZWFydC1zaGFw/ZS1waWxscy5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9TVZy/MXZPdzE0SzF0em9S/TzRmbjJNaE5GNmNh/bTZXaDBmU1kzOG5j/WUNRND0'); }
+        }
 
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
-.hero {
-    background: #e0f7fa;
-    padding: 50px;
-}
+        /* Search Bar */
+        .hero input {
+            padding: 10px;
+            width: 60%;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+        }
+        .hero button {
+            padding: 10px;
+            background: #00164a;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
 
-.hero input {
-    padding: 10px;
-    width: 60%;
-    margin: 10px 0;
-}
-
-.hero button {
-    padding: 10px 20px;
-    background: #008080;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-.categories {
-    padding: 40px;
-}
-
-.category-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.category img {
-    width: 150px;
-    height: 150px;
-    border-radius: 10px;
-}
-
-.upload-prescription {
-    background: #f1f1f1;
-    padding: 40px;
-}
-
-.upload-prescription .btn {
-    padding: 10px 20px;
-    background: #008080;
-    color: white;
-    text-decoration: none;
-}
-footer {
-    background: #008080;
-    padding: 15px;
-    color: white;
-}
+        .browse-conditions {
+            background: #f9f9f9;
+            padding: 40px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            padding: 20px;
+            max-width: 80%;
+            margin: auto;
+        }
+        .category-button {
+            padding: 15px;
+            background: #00164a;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: 0.3s;
+            width: 100%;
+        }
+        .category-button:hover {
+            background: #00164a;
+        }
+        footer {
+            background: #00164a;
+            padding: 15px;
+            color: white;
+        }
+        @media (max-width: 1024px) {
+            .grid {
+                grid-template-columns: repeat(3, 1fr); 
+            }
+        }
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr); 
+            }
+        }
+        @media (max-width: 480px) {
+            .grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+            .hero input {
+                width: 80%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -98,55 +140,54 @@ footer {
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="products.html">Products</a></li>
-            <li><a href="upload-prescription.html">Upload Prescription</a></li>
             <li><a href="orders.html">My Orders</a></li>
             <li><a href="about.html">About Us</a></li>
             <li><a href="contact.html">Contact</a></li>
             <li><a href="login.html">Login</a></li>
         </ul>
     </nav>
+
     <section class="hero">
         <h1>Welcome to PharmaBridge</h1>
         <p>Your trusted online medical store</p>
         <input type="text" id="search-bar" placeholder="Search for medicines...">
         <button onclick="searchMedicine()">Search</button>
     </section>
-    <section class="categories">
-        <h2>Shop by Category</h2>
-        <div class="category-container">
-            <div class="category">
-                <a href="products.html"><img src="pain-relief.jpg" alt="Pain Relief"></a>
-                <p>Pain Relief</p>
-            </div>
-            <div class="category">
-                <a href="products.html"><img src="vitamins.jpg" alt="Vitamins"></a>
-                <p>Vitamins</p>
-            </div>
-            <div class="category">
-                <a href="products.html"><img src="cold-med.jpg" alt="Cold Medication"></a>
-                <p>Cold Medication</p>
-            </div>
+
+    <section class="browse-conditions">
+        <h2>Browse by Health Conditions</h2>
+        <div class="grid">
+            <button class="category-button" onclick="navigateTo('diabetes-care')">Diabetes Care</button>
+            <button class="category-button" onclick="navigateTo('cardiac-care')">Cardiac Care</button>
+            <button class="category-button" onclick="navigateTo('stomach-care')">Stomach Care</button>
+            <button class="category-button" onclick="navigateTo('pain-relief')">Pain Relief</button>
+            <button class="category-button" onclick="navigateTo('liver-care')">Liver Care</button>
+            <button class="category-button" onclick="navigateTo('oral-care')">Oral Care</button>
+            <button class="category-button" onclick="navigateTo('respiratory-care')">Respiratory</button>
+            <button class="category-button" onclick="navigateTo('sexual-health')">Sexual Health</button>
+            <button class="category-button" onclick="navigateTo('elderly-care')">Elderly Care</button>
+            <button class="category-button" onclick="navigateTo('cold-immunity')">Cold & Immunity</button>
         </div>
     </section>
-    <section class="upload-prescription">
-        <h2>Need Prescription Medicines?</h2>
-        <p>Upload your doctor’s prescription and get approval.</p>
-        <a href="upload-prescription.html" class="btn">Upload Now</a>
-    </section>
+
     <footer>
         <p>© 2025 PharmaBridge | <a href="terms.html">Privacy Policy</a> | <a href="faq.html">FAQs</a></p>
     </footer>
-    <script>
-function searchMedicine() {
-    let query = document.getElementById("search-bar").value.toLowerCase();
-    if (query) {
-        alert("Searching for: " + query);
-        window.location.href = "products.html"; 
-    } else {
-        alert("Please enter a medicine name to search.");
-    }
-}
 
+    <script>
+        function searchMedicine() {
+            let query = document.getElementById("search-bar").value.toLowerCase();
+            if (query) {
+                alert("Searching for: " + query);
+                window.location.href = "products.html"; 
+            } else {
+                alert("Please enter a medicine name to search.");
+            }
+        }
+
+        function navigateTo(category) {
+            window.location.href = category + ".html";
+        }
     </script>
 </body>
 </html>

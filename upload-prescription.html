@@ -1,38 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload Prescription</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Upload Prescription - PharmaBridge</title>
     <style>
-.upload-section {
-    text-align: center;
-    padding: 50px;
-    background: #f9f9f9;
-}
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
 
-.upload-section input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    margin: 20px 0;
-}
+        nav {
+            background: #00164a;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.upload-section button {
-    padding: 10px 20px;
-    background: #008080;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
+        nav .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
 
-#previewArea {
-    margin-top: 20px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    background: #fff;
-    display: inline-block;
-}
+        nav ul {
+            list-style: none;
+            display: flex;
+            padding: 0;
+            margin: 0;
+        }
 
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .upload-section {
+            text-align: center;
+            padding: 50px;
+            background: #f9f9f9;
+            height: 60vh;
+        }
+
+        .upload-section input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin: 20px 0;
+            font-size: 16px;
+            
+        }
+
+        .upload-section button {
+            padding: 10px 20px;
+            background: #00164a;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .upload-section button:hover {
+            background-color: #003d99;
+        }
+
+        #previewArea {
+            margin-top: 10px;
+            margin-left: 5px;
+            margin-right: 5px;
+            padding-top: 14px;
+            padding-bottom: 14px;
+            border: 1px solid #ddd;
+            background: #fff;
+            display: inline-block;
+            font-size: 16px;
+            height: 30px;
+        }
+
+        footer {
+            background: #00164a;
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+            color: #ccc;
+        }
     </style>
 </head>
 <body>
@@ -41,44 +111,55 @@
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="products.html">Products</a></li>
+            <li><a href="cart.html">Cart</a></li>
             <li><a href="orders.html">My Orders</a></li>
-            <li><a href="about.html">About Us</a></li>
             <li><a href="contact.html">Contact</a></li>
+            <li><a href="profile.html">Profile</a></li>
             <li><a href="login.html">Login</a></li>
         </ul>
     </nav>
+
     <section class="upload-section">
         <h2>Upload Your Prescription</h2>
         <p>Please upload a valid doctor's prescription for verification.</p>
-        <input type="file" id="prescriptionInput" accept="image/*, .pdf" onchange="previewFile()">
-                <div id="previewArea">
+        <input type="file" id="prescriptionInput" accept="image/*, .pdf" onchange="previewFile()" />
+        <div id="previewArea">
             <p>No file chosen</p>
-                </div>
+        </div>
         <button onclick="submitPrescription()">Submit for Verification</button>
     </section>
+
     <footer>
-        <p>© 2025 PharmaBridge | <a href="terms.html">Privacy Policy</a> | <a href="faq.html">FAQs</a></p>
+        <p>
+            &copy; 2025 PharmaBridge &nbsp;|&nbsp; 
+            <a href="terms.html">Terms & Conditions</a> &nbsp;|&nbsp; 
+            <a href="faq.html">FAQs</a> &nbsp;|&nbsp; 
+            <a href="contact.html">Contact</a>
+        </p>
     </footer>
+
     <script>
-function previewFile() {
-    let fileInput = document.getElementById("prescriptionInput");
-    let previewArea = document.getElementById("previewArea");
-    if (fileInput.files.length > 0) {
-        let file = fileInput.files[0];
-        previewArea.innerHTML = `<p>Selected File: ${file.name}</p>`;
-    } else {
-        previewArea.innerHTML = `<p>No file chosen</p>`;
-    }
-}
-function submitPrescription() {
-    let fileInput = document.getElementById("prescriptionInput");
-    if (fileInput.files.length > 0) {
-        alert("Prescription uploaded successfully! Verification in progress.");
-        window.location.href = "orders.html"; 
-    } else {
-        alert("Please select a file to upload.");
-    }
-}
+        function previewFile() {
+            const fileInput = document.getElementById("prescriptionInput");
+            const previewArea = document.getElementById("previewArea");
+
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                previewArea.innerHTML = `<p>Selected File: ${file.name}</p>`;
+            } else {
+                previewArea.innerHTML = `<p>No file chosen</p>`;
+            }
+        }
+
+        function submitPrescription() {
+            const fileInput = document.getElementById("prescriptionInput");
+            if (fileInput.files.length > 0) {
+                alert("Prescription uploaded successfully! Verification in progress.");
+                window.location.href = "orders.html";
+            } else {
+                alert("Please select a file to upload.");
+            }
+        }
     </script>
 </body>
 </html>
