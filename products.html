@@ -225,32 +225,27 @@
   </style>
 </head>
 <body>
-    
+  <nav>
+    <div class="logo">PharmaBridge</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="upload-prescription.html">Upload Prescription</a></li>
+      <li><a href="cart.html">Cart (<span id="cartCount">0</span>)</a></li>      
+      
+      </ul>
+  </nav>
   
 
   <button id="filterToggle" class="filter-toggle">☰ Filters</button>
 
-<!-- Filter Sidebar -->
 <aside id="filterSidebar" class="filter-sidebar">
     <h3>Filter Products</h3>
     <label><input type="checkbox" id="prescriptionFilter"> Prescription Required</label>
     <button id="applyFilters">Apply Filters</button>
 </aside>
 
-<!-- Product List -->
 <div id="productList"></div>
 
-<!-- Pagination Controls -->
-<div id="paginationControls" class="pagination-controls"></div>
-  <nav>
-    <div class="logo">PharmaBridge</div>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="upload-prescription.html">Upload Prescription</a></li>
-      <li><a href="about.html">About Us</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      </ul>
-  </nav>
 
  
 
@@ -426,9 +421,20 @@
       renderPagination();
     }
 
+    let cartCount = 0; // Global variable to keep track of the number of unique items in the cart
+    let cartItems = []; // Array to keep track of added product IDs
+    
     function addToCart(productId) {
-      alert(`Product ID ${productId} added to cart!`);
-    }
+      // Check if the product is already in the cart
+      if (!cartItems.includes(productId)) {
+          cartItems.push(productId); // Add the product ID to the cart
+          cartCount++; // Increment the cart count
+          document.getElementById("cartCount").textContent = cartCount; // Update the cart count display
+          
+          // Save cart items to local storage
+          localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      }
+  }
     
 
     document.addEventListener("DOMContentLoaded", () => {

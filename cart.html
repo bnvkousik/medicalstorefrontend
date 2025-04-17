@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -119,10 +119,7 @@
     <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="products.html">Products</a></li>
-      <li><a href="upload-prescription.html">Upload Prescription</a></li>
       <li><a href="orders.html">My Orders</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="login.html">Login</a></li>
     </ul>
   </nav>
 
@@ -218,6 +215,220 @@
 
       localStorage.setItem("cart", JSON.stringify(cart));
       alert(`${product.name} added to cart!`);
+    }
+
+    document.addEventListener("DOMContentLoaded", displayCart);
+  </script>
+
+</body>
+</html> -->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shopping Cart - PharmaBridge</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    nav {
+      background: #00164a;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav .logo {
+      color: white;
+      font-size: 26px;
+      font-weight: bold;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+      margin: 0 12px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 15px;
+      padding: 6px 8px;
+      transition: background 0.3s;
+    }
+
+    nav ul li a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+    }
+
+    .cart-container {
+      text-align: center;
+      padding: 40px;
+      min-height: 59vh;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #ddd;
+      padding: 15px;
+      margin: 10px;
+    }
+
+    .cart-item img {
+      width: 80px;
+      height: 80px;
+      border-radius: 5px;
+    }
+
+    .cart-item div {
+      flex: 1;
+      padding: 10px;
+    }
+
+    .cart-item button {
+      background: #ff5733;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    .cart-total {
+      margin-top: 20px;
+    }
+
+    .cart-total button {
+      padding: 10px 20px;
+      background: #00164a;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    footer {
+      background: #00164a;
+      padding: 15px;
+      color: white;
+      text-align: center;
+    }
+
+    footer a {
+      color: #aad4ff;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">PharmaBridge</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="orders.html">My Orders</a></li>
+    </ul>
+  </nav>
+
+  <section class="cart-container">
+    <h2>Shopping Cart</h2>
+    <div id="cartItems"></div>
+
+    <div class="cart-total">
+      <h3>Total: <span id="totalPrice">$0</span></h3>
+      <button onclick="proceedToCheckout()">Proceed to Checkout</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 PharmaBridge | <a href="terms.html">Privacy Policy</a> | <a href="faq.html">FAQs</a></p>
+  </footer>
+
+  <script>
+    const products = [
+      { id: 1, name: "Pain Reliever", price: 10, img: "pain-relief.jpg" },
+      { id: 2, name: "Vitamin C", price: 15, img: "vitamins.jpg" },
+      { id: 3, name: "Cold Medicine", price: 12, img: "cold-med.jpg" }
+    ];
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function displayCart() {
+      let cartContainer = document.getElementById("cartItems");
+      let totalPrice = 0;
+      cartContainer.innerHTML = "";
+
+      if (cart.length === 0) {
+        cartContainer.innerHTML = "<p>Your cart is empty.</p>";
+        document.getElementById("totalPrice").innerText = "$0";
+        return;
+      }
+
+      cart.forEach((item, index) => {
+        totalPrice += item.price * item.quantity;
+        cartContainer.innerHTML += `
+          <div class="cart-item">
+            <img src="${item.img}" alt="${item.name}">
+            <div>
+              <h4>${item.name}</h4>
+              <p>Price: $${item.price}</p>
+              <p>Quantity: 
+                <button onclick="changeQuantity(${index}, -1)">-</button> 
+                ${item.quantity} 
+                <button onclick="changeQuantity(${index}, 1)">+</button>
+              </p>
+            </div>
+            <button onclick="removeFromCart(${index})">Remove</button>
+          </div>
+        `;
+      });
+
+      document.getElementById("totalPrice").innerText = `$${totalPrice}`;
+    }
+
+    function changeQuantity(index, change) {
+      if (cart[index].quantity + change > 0) {
+        cart[index].quantity += change;
+      } else {
+        cart.splice(index, 1);  
+      }
+      localStorage.setItem("cart", JSON.stringify(cart));
+      displayCart();
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      displayCart();
+    }
+
+    function proceedToCheckout() {
+      if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+      }
+      window.location.href = "checkout.html"; // Redirect to checkout page
     }
 
     document.addEventListener("DOMContentLoaded", displayCart);
