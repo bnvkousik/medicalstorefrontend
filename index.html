@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PharmaBridge - Online Medical Store</title>
+  <title>Exilir - Online Medical Store</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -11,74 +11,81 @@
       padding: 0;
       text-align: center;
     }
+    
     nav {
-      background: #00164a;
+      background: #ffffff;
       padding: 15px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
     }
+    
     nav .logo {
-      color: white;
+      color: rgb(10, 26, 97);
       font-size: 24px;
       font-weight: bold;
     }
+    
     nav ul {
       list-style: none;
       display: flex;
       padding: 0;
       flex-wrap: wrap;
     }
+    
     nav ul li {
       margin: 0 10px;
     }
+    
     nav ul li a {
-      color: white;
+      color: rgb(0, 0, 0);
       text-decoration: none;
       font-weight: bold;
     }
+    
+    nav ul li a:hover {
+      color: #ff0066;
+    }
+    
     .hero {
       position: relative;
       padding: 50px;
       color: black;
-      background-image: url('https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=900');
-      background-size: 900px;
+      height: 200px;
+      background-size: cover;
       background-position: center;
+      background-color: rgb(219, 219, 219);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      text-shadow: none; /* Ensure no shadow on the hero section */
     }
+    
     .hero h1 {
+      font-size: 30px;
       margin-bottom: 15px;
-      background-color: white;
+      font-family: 'Poppins', sans-serif;
       color: #00164a;
       padding: 15px 30px;
       border-radius: 10px;
+      box-shadow: none; /* Remove the shadow */
     }
-    .hero p {
-      margin-bottom: 15px;
-      background-color: white;
-      color: #333;
-      padding: 10px 20px;
-      border-radius: 5px;
-    }
+    
     .hero input {
-        padding: 10px;
-        width: 500px;  /* Fixed width */
-        margin: 10px 0;
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        background-image: url('https://cdn-icons-png.flaticon.com/24/54/54481.png'); /* smaller icon */
-        background-repeat: no-repeat;
-        background-position: right 10px center;
-        padding-right: 40px;
-        box-sizing: border-box;
-      }
-      
-
+      padding: 10px;
+      width: 500px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background-image: url('https://cdn-icons-png.flaticon.com/24/54/54481.png');
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      padding-right: 40px;
+      box-sizing: border-box;
+    }
+    
     .hero button {
       padding: 10px 20px;
       background: #00164a;
@@ -88,10 +95,18 @@
       border-radius: 5px;
       font-weight: bold;
     }
+    
+    .hero button:hover {
+      background-color: #003080; /* Darker blue on hover */
+      transform: scale(1.05); /* Slight zoom effect */
+      transition: all 0.3s ease; /* Smooth animation */
+    }
+    
     .browse-conditions {
       background: #f9f9f9;
       padding: 40px;
     }
+    
     .grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -100,6 +115,7 @@
       max-width: 90%;
       margin: auto;
     }
+    
     .category-button {
       background: transparent;
       color: #333;
@@ -115,36 +131,36 @@
       justify-content: flex-start;
       box-sizing: border-box;
     }
-    .hero button:hover {
-        background-color: #003080; /* Darker blue on hover */
-        transform: scale(1.05);    /* Slight zoom effect */
-        transition: all 0.3s ease; /* Smooth animation */
-      }
-      
+    
     .category-button img {
       width: 50px;
       height: 50px;
       margin-right: 10px;
       border-radius: 10px;
     }
+    
     .category-button span {
       flex-grow: 1;
       text-align: left;
     }
+    
     footer {
-      background: #505a71;
+      background: #000000;
       padding: 20px;
       color: white;
       font-size: 0.9em;
     }
+    
     footer a {
       color: #eee;
       text-decoration: none;
       margin: 0 8px;
     }
+    
     footer a:hover {
       text-decoration: underline;
     }
+    
     @media (max-width: 768px) {
       nav ul {
         margin-top: 10px;
@@ -164,11 +180,133 @@
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       }
     }
+    
+    /* Container to center the slider */
+    .center-wrapper {
+      display: flex;
+      justify-content: center; /* Horizontally centers the slider */
+      align-items: center; /* Vertically centers the slider */
+      height: 100vh; /* Makes the container take the full height of the viewport */
+    }
+    
+    /* Slider container styling */
+    .slider-container {
+      position: relative;
+      width: 80%;
+      height: 450px;
+      overflow: hidden;
+      border-radius: 10px;
+      margin: auto;
+    }
+    
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      transition: opacity 1s ease-in-out;
+    }
+    
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .slide-content {
+      position: absolute;
+      top: 50%;
+      left: 10%;
+      transform: translateY(-50%);
+      color: white;
+      background-color: rgba(0, 0, 0, 0.5); /* semi-transparent overlay */
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 400px;
+    }
+    
+    /* Arrow Buttons */
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+      color: #333;
+      background-color: transparent;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+    
+    .arrow.left {
+      left: 10px;
+    }
+    
+    .arrow.right {
+      right: 10px;
+    }
+    
+    .arrow:hover {
+      background-color: #fff;
+      color: #007bff;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .slider-dots {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+    }
+    
+    .dot {
+      height: 12px;
+      width: 12px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    .dot.active {
+      background-color: #0077ff;
+    }
+    
+    .slide-content h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    
+    .slide-content p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+    
+    .slide-content button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    
+    .slide-content button:hover {
+      background-color: #0056b3;
+    }
+    
+
   </style>
 </head>
 <body>
   <nav>
-    <div class="logo">PharmaBridge</div>
+    <div class="logo">Exilir</div>
     <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="products.html">Products</a></li>
@@ -179,15 +317,61 @@
     </ul>
   </nav>
 
+  <!-- Image Slider Section -->
   <section class="hero">
-    <h1>Welcome to PharmaBridge</h1>
-    <p>Your trusted online medical store</p>
+    <h1 style="font-family: 'Pacifico', cursive;">Search Your Medicines Here...</h1>
     <form id="searchForm" onsubmit="handleSearch(event)">
       <input id="searchInput" type="text" placeholder="Search for medicines..." required>
       <button type="submit">Search</button>
     </form>
   </section>
 
+  <section class="py-8">
+    <div class="container mx-auto px-4">
+      <div class="center-wrapper">
+        <div class="slider-container" id="imageSlider">
+          
+          <!-- Arrows -->
+          <div class="arrow left" onclick="prevSlide()">❮</div>
+          <div class="arrow right" onclick="nextSlide()">❯</div>
+  
+          <!-- Slides -->
+          <div class="slide opacity-100">
+            <img src="https://readdy.ai/api/search-image?query=Modern%20pharmacy%20interior%20with%20shelves%20of%20medicines%2C%20pharmacist%20helping%20customer%2C%20clean%20professional%20environment%2C%20soft%20lighting%2C%20medical%20supplies%20neatly%20arranged%2C%20pharmaceutical%20products%20display%2C%20healthcare%20setting%2C%20high-quality%20professional%20photography&width=1200&height=400&seq=1&orientation=landscape" alt="Pharmacy Services">
+            <div class="slide-content">
+              <h2>Your Health Is Our Priority</h2>
+              <p>Get medicines delivered to your doorstep with our reliable pharmacy services.</p>
+              <button onclick="alert('Shop Now Clicked')">Shop Now</button>
+            </div>
+          </div>
+  
+          <div class="slide opacity-0">
+            <img src="https://readdy.ai/api/search-image?query=Doctor%20reviewing%20prescription%20with%20patient%2C%20medical%20consultation%2C%20healthcare%20professional%20in%20white%20coat%2C%20modern%20medical%20office%2C%20prescription%20pad%20and%20stethoscope%20visible%2C%20professional%20healthcare%20setting%2C%20warm%20lighting%2C%20high-quality%20professional%20photography&width=1200&height=400&seq=2&orientation=landscape" alt="Prescription Services">
+            <div class="slide-content">
+              <h2>Easy Prescription Refills</h2>
+              <p>Upload your prescription and get your medicines delivered within 24 hours.</p>
+              <button onclick="alert('Upload Now Clicked')">Upload Now</button>
+            </div>
+          </div>
+  
+          <div class="slide opacity-0">
+            <img src="https://readdy.ai/api/search-image?query=Healthcare%20professional%20consulting%20with%20elderly%20patient%20about%20medication%2C%20digital%20tablet%20showing%20health%20information%2C%20modern%20pharmacy%20consultation%20area%2C%20medical%20advice%20session%2C%20professional%20healthcare%20environment%2C%20warm%20lighting%2C%20high-quality%20professional%20photography&width=1200&height=400&seq=3&orientation=landscape" alt="Healthcare Consultation">
+            <div class="slide-content">
+              <h2>Expert Health Advice</h2>
+              <p>Consult with our healthcare professionals for personalized guidance.</p>
+              <button onclick="alert('Book Consultation Clicked')">Book Consultation</button>
+            </div>
+          </div>
+  
+          <!-- Dots -->
+          <div class="slider-dots" id="dotsContainer">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
   <section class="browse-conditions">
     <h2>Browse by Health Conditions</h2>
     <div class="grid">
@@ -235,26 +419,62 @@
   </section>
 
   <footer>
-    <p>© 2025 PharmaBridge | <a href="privacy.html">Privacy Policy</a> | <a href="faq.html">FAQs</a></p>
+    <div class="footer-info">
+      <p>Contact: support@exilir.com</p>
+      <p>Phone: +1-800-123-4567</p>
+      <p>&copy; 2025 Exilir. All rights reserved.</p>
+      <p>
+        <a href="terms.html">Terms & Conditions</a> |
+        <a href="privacy.html">Privacy Policy</a>
+      </p>
+    </div>
   </footer>
 
   <script>
-    function navigateTo(category) {
-      window.location.href = category + ".html";
-    }
+      function navigateTo(category) {
+        // Example: Redirect to a URL like health-category.html?type=diabetes-care
+        window.location.href = `health-category.html?type=${category}`;
+      }
+      const slides = document.querySelectorAll('.slide');
+  const dotsContainer = document.getElementById('dotsContainer');
+  let currentSlide = 0;
 
-    function handleSearch(event) {
-        event.preventDefault();  // Prevent form submission
-        
-        // Get the search input value
-        const searchQuery = document.getElementById('searchInput').value.trim();
-        
-        // Redirect to the products page with the search query as a URL parameter
-        if (searchQuery) {
-            window.location.href = `products.html?search=${encodeURIComponent(searchQuery)}`;
-        }
-    }
-    
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.style.opacity = i === index ? '1' : '0';
+    });
+
+    const dots = document.querySelectorAll('.dot');
+    dots.forEach(dot => dot.classList.remove('active'));
+    dots[index].classList.add('active');
+  }
+
+  function createDots() {
+    slides.forEach((_, i) => {
+      const dot = document.createElement('span');
+      dot.classList.add('dot');
+      if (i === 0) dot.classList.add('active');
+      dot.onclick = () => {
+        currentSlide = i;
+        showSlide(currentSlide);
+      };
+      dotsContainer.appendChild(dot);
+    });
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  function prevSlide() {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  createDots();
+  showSlide(currentSlide);
+  setInterval(nextSlide, 4000); // Auto slide every 6s
   </script>
 </body>
 </html>

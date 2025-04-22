@@ -2,16 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Checkout - PharmaBridge</title>
   <style>
+    /* General Styles */
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
     }
 
+    /* Navigation Bar */
     nav {
-      background: #00164a;
+      background: #ffffff;
       padding: 15px 30px;
       display: flex;
       justify-content: space-between;
@@ -22,175 +26,634 @@
     }
 
     nav .logo {
-      color: white;
-      font-size: 26px;
+      color: rgb(19,27,96);
+      font-size: 24px;
       font-weight: bold;
     }
 
     nav ul {
       list-style: none;
       display: flex;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      color: rgb(0, 0, 0);
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: rgba(91, 63, 63, 0.2);
+      
+    }
+
+    /* Main Content */
+    .checkout-container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 30px;
+    }
+
+    /* Order Summary Section */
+    .order-summary {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .order-summary h3 {
+      margin-top: 0;
+      font-size: 20px;
+      color: #00164a;
+    }
+
+    .order-items {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .order-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .order-item-img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    .order-item-details h4 {
+      margin: 0;
+      font-size: 16px;
+      color: #00164a;
+    }
+
+    .order-item-details p {
+      margin: 5px 0;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .order-summary strong {
+      display: block;
+      margin-top: 15px;
+      font-size: 18px;
+      text-align: right;
+      color: #00164a;
+    }
+   /* Payment Form Modal */
+#paymentForm {
+  position: fixed; /* Fixed positioning to center relative to the viewport */
+  top: 50%; /* Move the top edge to 50% of the viewport height */
+  left: 50%; /* Move the left edge to 50% of the viewport width */
+  transform: translate(-50%, -50%); /* Offset the container by half its width and height */
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white background */
+  border-radius: 12px; /* Slightly rounded corners */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  backdrop-filter: blur(10px); /* Transparent blur effect */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Optional border for better visibility */
+  z-index: 1001; /* Ensure it appears above other elements */
+  max-width: 400px; /* Limit the maximum width for better readability */
+  width: 90%; /* Responsive width */
+  max-height: 80vh; /* Limit the maximum height to 80% of the viewport */
+  overflow-y: auto; /* Enable scrolling if content overflows */
+}
+
+/* Labels */
+#paymentForm label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333; /* Dark gray for contrast */
+}
+
+/* Input Fields */
+#paymentForm input {
+  width: 90%;
+  padding: 12px; /* Increased padding for better touch targets */
+  margin-bottom: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.1); /* Light border */
+  border-radius: 8px; /* Rounded corners */
+  font-size: 16px;
+  background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent background */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+}
+
+#paymentForm input:focus {
+  border-color: #0055aa; /* Highlight border on focus */
+  box-shadow: 0 0 8px rgba(0, 85, 170, 0.3); /* Glow effect on focus */
+  outline: none; /* Remove default focus outline */
+}
+
+/* Submit Button */
+#paymentForm button {
+  width: 100%;
+  padding: 12px;
+  background-color: #0055aa; /* Primary button color */
+  color: white;
+  border: none;
+  border-radius: 8px; /* Rounded corners */
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth hover and click effects */
+}
+
+#paymentForm button:hover {
+  background-color: #003366; /* Darker shade on hover */
+}
+
+#paymentForm button:active {
+  transform: scale(0.98); /* Slight shrink effect on click */
+}
+    /* General Popup Modal Styles */
+.popup-modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1002;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+}
+
+.popup-content {
+  background-color: white;
+  margin: 15% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.close-popup {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.close-popup:hover {
+  color: #ff0066;
+}
+
+.buy-button {
+  padding: 10px 20px;
+  background-color: #0055aa;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.buy-button:hover {
+  background-color: #003366;
+}
+
+    /* Checkout Form Section */
+    .checkout-form {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .checkout-form h3 {
+      margin-top: 0;
+      font-size: 20px;
+      color: #00164a;
+    }
+
+    .checkout-form label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .checkout-form input,
+    .checkout-form textarea {
+      width: 90%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+
+    .checkout-form small {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 12px;
+      color: #777;
+    }
+
+    .checkout-form fieldset {
+      border: none;
       padding: 0;
       margin: 0;
     }
 
-    nav ul li {
-      margin: 0 12px;
-    }
-
-    nav ul li a {
-      color: white;
-      text-decoration: none;
+    .checkout-form legend {
       font-weight: bold;
-      font-size: 15px;
-      padding: 6px 8px;
-      transition: background 0.3s;
+      color: #333;
+      margin-bottom: 10px;
     }
 
-    nav ul li a:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-      border-radius: 4px;
-    }
-
-    .checkout-container {
-      text-align: center;
-      padding: 40px;
-    }
-
-    #orderSummary {
-      border: 1px solid #ddd;
-      padding: 20px;
-      margin-bottom: 20px;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .checkout-container form {
-      display: flex;
-      flex-direction: column;
-      max-width: 400px;
-      margin: auto;
-    }
-
-    .checkout-container label {
-      margin-top: 10px;
-      text-align: left;
-    }
-
-    .checkout-container input, textarea {
-      padding: 8px;
+    .checkout-form button {
       width: 100%;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    .checkout-container button {
+      padding: 12px;
       background: #00164a;
       color: white;
       border: none;
-      padding: 10px;
-      margin-top: 20px;
+      border-radius: 4px;
+      font-size: 16px;
       cursor: pointer;
+      transition: background 0.3s ease;
     }
 
+    .checkout-form button:hover {
+      background: #003366;
+    }
+
+    /* Footer */
     footer {
-      background: #00164a;
-      padding: 15px;
+      background: #000000;
+      padding: 20px;
       color: white;
       text-align: center;
+      font-size: 14px;
     }
 
     footer a {
-      color: #aad4ff;
+      color: #ffca28;
       text-decoration: none;
-      margin: 0 5px;
+      margin: 0 8px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .checkout-container {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
-
+  <!-- Navigation Bar -->
   <nav>
-    <div class="logo">PharmaBridge</div>
+    <div class="logo">Exilir</div>
     <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="products.html">Products</a></li>
-      <li><a href="cart.html">Cart</a></li>
       <li><a href="orders.html">My Orders</a></li>
       <li><a href="contact.html">Contact</a></li>
-      <li><a href="login.html">Login</a></li>
+
+      <!-- <li><a href="#">Cart (<span id="cartCount">0</span>)</a></li> -->
     </ul>
   </nav>
 
-  <section class="checkout-container">
-    <h2>Checkout</h2>
+  
 
-    <div id="orderSummary"></div>
-
-    <form id="checkoutForm">
+  <!-- Checkout Container -->
+  <div class="checkout-container">
+    <!-- Checkout Form -->
+    <form class="checkout-form" id="checkoutForm" novalidate>
       <h3>Shipping Details</h3>
+
       <label for="name">Full Name:</label>
-      <input type="text" id="name" required>
+      <input type="text" id="name" name="name" placeholder="Enter your full name" required />
 
       <label for="address">Address:</label>
-      <textarea id="address" required></textarea>
+      <textarea id="address" name="address" placeholder="Enter your delivery address" required></textarea>
 
       <label for="phone">Phone Number:</label>
-      <input type="tel" id="phone" required>
+      <input type="tel" id="phone" name="phone" placeholder="Enter phone no." pattern="[0-9]{10}" required />
+      <small>Format: 10 digits (e.g., 1234567890)</small>
 
-      <h3>Payment Method</h3>
-      <label><input type="radio" name="payment" value="card" required> Credit/Debit Card</label>
-      <label><input type="radio" name="payment" value="cod" required> Cash on Delivery</label>
+      
+      </fieldset>
 
-      <button type="submit">Place Order</button>
+      <button id="placeOrderButton" class="buy-button">Place Order</button>
+        </form>
+
+    
+
+    <!-- Order Summary -->
+    <div class="order-summary">
+      <h3>Order Summary</h3>
+      <div class="order-items" id="orderSummary">
+        <!-- Dynamic content will be inserted here -->
+      </div>
+    </div>
+  </div>
+
+
+<!-- Payment Details Box -->
+<div id="paymentForm" class="popup-modal" style="display: none;">
+  <div class="popup-content">
+    <span class="close-popup">&times;</span>
+    <h2>Payment Details</h2>
+    <form id="paymentDetailsForm">
+      <label for="cardNumber">Card Number:</label>
+      <input type="text" id="cardNumber" placeholder="Enter your card number" required />
+
+      <label for="expiryDate">Expiry Date:</label>
+      <input type="month" id="expiryDate" required />
+
+      <label for="cvv">CVV:</label>
+      <input type="text" id="cvv" placeholder="Enter CVV" pattern="\d{3}" required />
+
+      <label for="nameOnCard">Name on Card:</label>
+      <input type="text" id="nameOnCard" placeholder="Enter name on card" required />
+
+      <button type="submit" id="payButton" class="buy-button">Pay Now</button>
     </form>
-  </section>
+  </div>
+</div>
+
+<!-- Custom Popup Container -->
+<div id="customPopup" class="popup-modal" style="display: none;">
+  <div class="popup-content">
+    <p id="popupMessage">Close</p>
+  </div>
+</div>
+
 
   <footer>
-    <p>© 2025 PharmaBridge | <a href="terms.html">Privacy Policy</a> | <a href="faq.html">FAQs</a></p>
+    <div class="footer-info">
+      <p>Contact: support@exilir.com</p>
+      <p>Phone: +1-800-123-4567</p>
+      <p>&copy; 2025 Exilir. All rights reserved.</p>
+      <p>
+        <a href="terms.html">Terms & Conditions</a> |
+        <a href="privacy.html">Privacy Policy</a>
+      </p>
+    </div>
   </footer>
 
   <script>
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
-    function displayOrderSummary() {
-      let orderSummary = document.getElementById("orderSummary");
-      let total = 0;
-      orderSummary.innerHTML = "<h3>Order Summary</h3>";
+   // Simulated Cart Data (Replace with actual cart data)
+   const allProducts = [
+   { id: 1, name: "Paracetamol 500mg Tablets", category: "pain-relief", price: "$2.50", prescription: false, img: "https://images.unsplash.com/photo-1519161720427-f7711f9efce3?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHBpbGx8ZW58MHx8MHx8fDA%3D" },
+   { id: 2, name: "Vitamin C 1000mg Effervescent Tablets", category: "vitamins", price: "$5.00", prescription: false, img: "https://m.media-amazon.com/images/I/71Gfa-XmvWL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 3, name: "Cough Syrup (Adult)", category: "cold-medication", price: "$7.00", prescription: false, img: "https://m.media-amazon.com/images/I/817K0y+8AlL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 4, name: "Ibuprofen 200mg Tablets", category: "pain-relief", price: "$3.00", prescription: false, img: "https://m.media-amazon.com/images/I/719q+tb4jFL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 5, name: "Multivitamin Tablets", category: "vitamins", price: "$8.00", prescription: false, img: "https://m.media-amazon.com/images/I/71OnByHVvzL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 6, name: "Nasal Decongestant Spray", category: "cold-medication", price: "$6.50", prescription: false, img: "https://m.media-amazon.com/images/I/51bJgnp8zkL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 7, name: "Antacid Tablets", category: "digestive-health", price: "$4.00", prescription: false, img: "https://m.media-amazon.com/images/I/61RQXxC2bNL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 8, name: "Omega-3 Fish Oil Capsules", category: "supplements", price: "$12.00", prescription: false, img: "https://m.media-amazon.com/images/I/51M7I3+PLvL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 9, name: "Hand Sanitizer (Alcohol-based)", category: "personal-care", price: "$3.50", prescription: false, img: "https://m.media-amazon.com/images/I/71g3Oz1NclL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 10, name: "First Aid Kit (Small)", category: "first-aid", price: "$15.00", prescription: false, img: "https://m.media-amazon.com/images/I/71g347mQv2L._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 11, name: "Loratadine 10mg Tablets", category: "allergy", price: "$4.50", prescription: false, img: "https://m.media-amazon.com/images/I/61u+Q7SoyZL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 12, name: "Calcium Supplements", category: "supplements", price: "$9.00", prescription: false, img: "https://m.media-amazon.com/images/I/61Ig7nduqsL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 13, name: "Sore Throat Lozenges", category: "cold-medication", price: "$5.50", prescription: false, img: "https://m.media-amazon.com/images/I/613jT9qI0wL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 14, name: "Naproxen 500mg Tablets", category: "pain-relief", price: "$6.00", prescription: false, img: "https://m.media-amazon.com/images/I/713F+5b6BJL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 15, name: "Vitamin B Complex Capsules", category: "vitamins", price: "$10.00", prescription: false, img: "https://m.media-amazon.com/images/I/71Aquu3VmWL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 16, name: "Antihistamine Cream", category: "allergy", price: "$7.50", prescription: false, img: "https://m.media-amazon.com/images/I/61gy5ZXn6bL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 17, name: "Digestive Enzyme Capsules", category: "digestive-health", price: "$11.50", prescription: false, img: "https://m.media-amazon.com/images/I/718qpv+5U4L._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 18, name: "Probiotic Capsules", category: "supplements", price: "$14.00", prescription: false, img: "https://m.media-amazon.com/images/I/71Q1a5AiMML._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 19, name: "Adhesive Bandages (Pack of 20)", category: "first-aid", price: "$2.00", prescription: false, img: "https://m.media-amazon.com/images/I/81QeTjmnW5L._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 20, name: "Cetirizine 10mg Tablets", category: "allergy", price: "$5.00", prescription: false, img: "https://m.media-amazon.com/images/I/61LIzPJFNYL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 21, name: "Aspirin 75mg Tablets", category: "pain-relief", price: "$3.50", prescription: false, img: "https://m.media-amazon.com/images/I/61XkD79hSgL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 22, name: "Vitamin D Drops", category: "vitamins", price: "$9.50", prescription: false, img: "https://m.media-amazon.com/images/I/71uk50Ra+uL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 23, name: "Throat Spray", category: "cold-medication", price: "$8.00", prescription: false, img: "https://m.media-amazon.com/images/I/71z01pva3yL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 24, name: "Muscle Rub Cream", category: "pain-relief", price: "$10.50", prescription: false, img: "https://m.media-amazon.com/images/I/617r7iJ9mbL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 25, name: "Folic Acid Tablets", category: "vitamins", price: "$6.50", prescription: false, img: "https://m.media-amazon.com/images/I/51I++jRrYtL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 26, name: "Allergy Eye Drops", category: "allergy", price: "$9.00", prescription: false, img: "https://m.media-amazon.com/images/I/71K6GgJ6pDL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 27, name: "Laxative Tablets", category: "digestive-health", price: "$7.00", prescription: false, img: "https://m.media-amazon.com/images/I/71gh9tehyvL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 28, name: "Glucosamine & Chondroitin", category: "supplements", price: "$18.00", prescription: false, img: "https://m.media-amazon.com/images/I/816Wu-i7ZlL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 29, name: "Antiseptic Wipes", category: "first-aid", price: "$4.00", prescription: false, img: "https://m.media-amazon.com/images/I/71EE+22QybL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 30, name: "Hydrocortisone Cream", category: "skin-care", price: "$8.50", prescription: false, img: "https://m.media-amazon.com/images/I/61himFiMvQL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 31, name: "Codeine Phosphate Tablets (Prescription)", category: "pain-relief", price: "$12.00", prescription: true, img: "https://m.media-amazon.com/images/I/61bsVYLiC1L._AC_UY436_FMwebp_QL65_.jpg" },
+   { id: 32, name: "Vitamin B12 Injections (Prescription)", category: "vitamins", price: "$25.00", prescription: true, img: "https://m.media-amazon.com/images/I/71ePHxs6ilL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 33, name: "Antibiotic Ointment (Prescription)", category: "first-aid", price: "$11.00", prescription: true, img: "https://m.media-amazon.com/images/I/71wXrG6Hp8L._AC_UY436_FMwebp_QL65_.jpg" },
+   { id: 34, name: "Insulin Vials (Prescription)", category: "diabetes-care", price: "$45.00", prescription: true, img: "https://m.media-amazon.com/images/I/71A+KfqH19L._AC_UY436_FMwebp_QL65_.jpg" },
+   { id: 35, name: "Asthma Inhaler (Prescription)", category: "respiratory-care", price: "$30.00", prescription: true, img: "https://m.media-amazon.com/images/I/61zwEnm1WNL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 36, name: "Blood Pressure Monitor", category: "health-devices", price: "$35.00", prescription: false, img: "https://m.media-amazon.com/images/I/61Dxpb3j25L._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 37, name: "Thermometer (Digital)", category: "health-devices", price: "$15.00", prescription: false, img: "https://m.media-amazon.com/images/I/41aqyE9ZZAL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 38, name: "Support Bandage", category: "first-aid", price: "$6.00", prescription: false, img: "https://m.media-amazon.com/images/I/71QFzSFA-pL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 39, name: "Wound Dressing", category: "first-aid", price: "$4.50", prescription: false, img: "https://m.media-amazon.com/images/I/71agBjHzv4L._AC_UY436_FMwebp_QL65_.jpg" },
+   { id: 40, name: "Elastic Crepe Bandage", category: "first-aid", price: "$7.50", prescription: false, img: "https://m.media-amazon.com/images/I/51iNzdatuQL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 41, name: "Paracetamol Syrup (Children)", category: "pain-relief", price: "$5.00", prescription: false, img: "https://m.media-amazon.com/images/I/81W-iY-nu8L._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 42, name: "Chewable Multivitamins (Children)", category: "vitamins", price: "$9.00", prescription: false, img: "https://m.media-amazon.com/images/I/71VWdsAtC1L._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 43, name: "Baby Nasal Drops", category: "cold-medication", price: "$6.00", prescription: false, img: "https://m.media-amazon.com/images/I/719-tvETDvL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 44, name: "Teething Gel", category: "baby-care", price: "$7.00", prescription: false, img: "https://m.media-amazon.com/images/I/81DQtHlrSvL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 45, name: "Sunscreen Lotion (SPF 30)", category: "personal-care", price: "$12.00", prescription: false, img: "https://m.media-amazon.com/images/I/516ldvlHmKL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 46, name: "Moisturizing Cream", category: "skin-care", price: "$15.00", prescription: false, img: "https://m.media-amazon.com/images/I/71w8dfE39aL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 47, name: "Shampoo (Anti-dandruff)", category: "hair-care", price: "$10.00", prescription: false, img: "https://m.media-amazon.com/images/I/51QuF+V4vkL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 48, name: "Toothpaste (Fluoride)", category: "oral-care", price: "$4.00", prescription: false, img: "https://m.media-amazon.com/images/I/317K-ZJwAhL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 49, name: "Mouthwash (Antiseptic)", category: "oral-care", price: "$8.00", prescription: false, img: "https://m.media-amazon.com/images/I/71SftXqLv5L._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 50, name: "Cotton Balls", category: "personal-care", price: "$3.00", prescription: false, img: "https://m.media-amazon.com/images/I/61lf4fQv56L._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 51, name: "Pain Relief Patch", category: "pain-relief", price: "$9.50", prescription: false, img: "https://m.media-amazon.com/images/I/71JNfJPO33L._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 52, name: "Vitamin E Capsules", category: "vitamins", price: "$11.00", prescription: false, img: "https://m.media-amazon.com/images/I/71o1lIhIuWL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 53, name: "Cough Drops (Menthol)", category: "cold-medication", price: "$4.50", prescription: false, img: "https://m.media-amazon.com/images/I/71r2CrWo88L._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 54, name: "Motion Sickness Tablets", category: "travel-essentials", price: "$6.50", prescription: false, img: "https://m.media-amazon.com/images/I/51uXxic3F8L._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 55, name: "Sleeping Aid Tablets", category: "sleep-aids", price: "$12.50",prescription: false, img: "https://m.media-amazon.com/images/I/6164UN6oruL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 56, name: "Wound Closure Strips", category: "first-aid", price: "$5.50", prescription: false, img: "https://m.media-amazon.com/images/I/81QdpGVT-fL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 57, name: "Insect Repellent Spray", category: "personal-care", price: "$8.00", prescription: false, img: "https://m.media-amazon.com/images/I/61G6yvf5hCL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 58, name: "Lip Balm (SPF)", category: "skin-care", price: "$3.50", prescription: false, img: "https://m.media-amazon.com/images/I/61bqcqfHGqL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 59, name: "Dental Floss", category: "oral-care", price: "$2.50", prescription: false, img: "https://m.media-amazon.com/images/I/61iRd4CG+FL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 60, name: "Eye Wash Solution", category: "eye-care", price: "$7.00", prescription: false, img: "https://m.media-amazon.com/images/I/5187xVZta8L._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 61, name: "Strong Pain Relief Balm", category: "pain-relief", price: "$11.50", prescription: false, img: "https://m.media-amazon.com/images/I/51HhchJDAjL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 62, name: "Zinc Supplements", category: "vitamins", price: "$8.50", prescription: false, img: "https://m.media-amazon.com/images/I/71sYgUL7KzL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 63, name: "Herbal Cough Syrup", category: "cold-medication", price: "$9.00", prescription: false, img: "https://m.media-amazon.com/images/I/81ZNQU5dUCS._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 64, name: "Travel Sickness Bands", category: "travel-essentials", price: "$10.00", prescription: false, img: "https://m.media-amazon.com/images/I/814LCV4CslL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 65, name: "Melatonin Tablets", category: "sleep-aids", price: "$15.00", prescription: false, img: "https://m.media-amazon.com/images/I/616RYKAUVvL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 66, name: "Burn Cream", category: "first-aid", price: "$7.00", prescription: false, img: "https://m.media-amazon.com/images/I/71QJiapQGIL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 67, name: "Foot Cream", category: "foot-care", price: "$12.00", prescription: false, img: "https://m.media-amazon.com/images/I/61c7pbzOQbL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 68, name: "Anti-fungal Cream", category: "skin-care", price: "$14.00", prescription: false, img: "https://m.media-amazon.com/images/I/71GHqeXP7NL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 69, name: "Electric Toothbrush", category: "oral-care", price: "$30.00", prescription: false, img: "https://m.media-amazon.com/images/I/512V1GCv-zL._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 70, name: "Contact Lens Solution", category: "eye-care", price: "$10.00", prescription: false, img: "https://m.media-amazon.com/images/I/81NPt2aVM8L._AC_UL640_FMwebp_QL65_.jpg" },
+   { id: 71, name: "Headache Relief Tablets", category: "pain-relief", price: "$4.00", prescription: false, img: "https://a.media-amazon.com/images/I/71E9GVeSkvL._AC_UL640_QL65_.jpg" },
+   { id: 72, name: "Iron Supplements", category: "vitamins", price: "$7.50", prescription: false, img: "https://a.media-amazon.com/images/I/61w3wGD-J4L._AC_UL640_QL65_.jpg" },
+   { id: 73, name: "Eucalyptus Oil (Inhalant)", category: "cold-medication", price: "$6.00", prescription: false, img: "https://a.media-amazon.com/images/I/61yBRwpLQRL._AC_UL640_QL65_.jpg" },
+   { id: 74, name: "Sea Sickness Patches", category: "travel-essentials", price: "$11.00", prescription: false, img: "https://a.media-amazon.com/images/I/61lS84JqfML._AC_UL640_QL65_.jpg" },
+   { id: 75, name: "Herbal Sleeping Aid", category: "sleep-aids", price: "$16.00", prescription: false, img: "https://a.media-amazon.com/images/I/81mkyGEPawL._AC_UL640_QL65_.jpg" },
+   { id: 76, name: "Sterile Gauze Pads", category: "first-aid", price: "$5.00", prescription: false, img: "https://a.media-amazon.com/images/I/71nsCmYIyjL._AC_UL640_QL65_.jpg" },
+   { id: 77, name: "Corn Removal Plasters", category: "foot-care", price: "$8.00", prescription: false, img: "https://a.media-amazon.com/images/I/61hyTBICybL._AC_UL640_QL65_.jpg" },
+   { id: 78, name: "Acne Treatment Cream", category: "skin-care", price: "$13.00", prescription: false, img: "https://a.media-amazon.com/images/I/61yjHJ+UzjL._AC_UL640_QL65_.jpg" },
+   { id: 79, name: "Water Flosser", category: "oral-care", price: "$45.00", prescription: false, img: "https://a.media-amazon.com/images/I/61lROm-52mL._AC_UL640_QL65_.jpg" },
+   { id: 80, name: "Eye Drops (Lubricating)", category: "eye-care", price: "$8.50", prescription: false, img: "https://a.media-amazon.com/images/I/81PEQb565HL._AC_UL640_QL65_.jpg" },
+   { id: 81, name: "Back Pain Relief Cream", category: "pain-relief", price: "$10.00", prescription: false, img: "https://a.media-amazon.com/images/I/61jp6Cug86L._AC_UL640_QL65_.jpg" },
+   { id: 82, name: "Magnesium Supplements", category: "vitamins", price: "$9.50", prescription: false, img: "https://a.media-amazon.com/images/I/41rg1jbFAOL._AC_SR250,250_.jpg" },
+   { id: 83, name: "Cough & Cold Tablets", category: "cold-medication", price: "$6.50", prescription: false, img: "https://a.media-amazon.com/images/I/713xVNzi26L._AC_UL640_QL65_.jpg" },
+   { id: 84, name: "Ear Drops (Wax Removal)", category: "ear-care", price: "$7.50", prescription: false, img: "https://a.media-amazon.com/images/I/51xF4RtllmL._AC_UL640_QL65_.jpg" },
+   { id: 85, name: "Sleep Mask", category: "sleep-aids", price: "$11.00", prescription: false, img: "https://a.media-amazon.com/images/I/61LlC4hNWjL._AC_UL640_QL65_.jpg" },
+   { id: 86, name: "Medical Tape", category: "first-aid", price: "$3.50", prescription: false, img: "https://a.media-amazon.com/images/I/61sPHa1g4RL._AC_UL640_QL65_.jpg" },
+   { id: 87, name: "Callus Remover", category: "foot-care", price: "$9.00", prescription: false, img: "https://a.media-amazon.com/images/I/61i4k2U8olL._AC_UL640_QL65_.jpg" },
+   { id: 88, name: "Eczema Cream", category: "skin-care", price: "$16.00", prescription: false, img: "https://a.media-amazon.com/images/I/514BYG3ttGL._AC_UL640_QL65_.jpg" },
+   { id: 89, name: "Tongue Cleaner", category: "oral-care", price: "$3.00", prescription: false, img: "https://a.media-amazon.com/images/I/71K3YWZEzFL._AC_UL640_QL65_.jpg" },
+   { id: 90, name: "Reading Glasses", category: "eye-care", price: "$20.00", prescription: false, img: "https://a.media-amazon.com/images/I/417ZW78r0UL._AC_SR360,240_CB1169409_QL70_.jpg" },
+   { id: 91, name: "Arthritis Pain Relief Gel", category: "pain-relief", price: "$13.00", prescription: false, img: "https://a.media-amazon.com/images/I/71rIEVN9d8L._AC_UL640_QL65_.jpg" },
+   { id: 92, name: "Vitamin A Supplements", category: "vitamins", price: "$8.00", prescription: false, img: "https://a.media-amazon.com/images/I/51wdUfzvE4L._AC_UL640_QL65_.jpg" },
+   { id: 93, name: "Steam Inhaler", category: "cold-medication", price: "$25.00", prescription: false, img: "https://a.media-amazon.com/images/I/61JUAq7WWzL._AC_UL640_QL65_.jpg" },
+   { id: 94, name: "Ear Plugs", category: "ear-care", price: "$4.00", prescription: false, img: "https://a.media-amazon.com/images/I/51vun8qtNlL._AC_UL640_QL65_.jpg" },
+   { id: 95, name: "Humidifier", category: "respiratory-care", price: "$40.00", prescription: false, img: "https://a.media-amazon.com/images/I/61TPvUavIPL._AC_UY436_QL65_.jpg" },
+   { id: 96, name: "Tweezers (Medical)", category: "first-aid", price: "$5.00", prescription: false, img: "https://a.media-amazon.com/images/I/71TBrIU3hgL._AC_UL640_QL65_.jpg" },
+   { id: 97, name: "Nail Clippers", category: "personal-care", price: "$6.00", prescription: false, img: "https://a.media-amazon.com/images/I/71StzTWBH+L._AC_UL640_QL65_.jpg" },
+   { id: 98, name: "Stretch Mark Cream", category: "skin-care", price: "$18.00", prescription: false, img: "https://a.media-amazon.com/images/I/61e3ur-UNQL._AC_UL640_QL65_.jpg" },
+   { id: 99, name: "Toothbrush (Soft Bristle)", category: "oral-care", price: "$3.50", prescription: false, img: "https://a.media-amazon.com/images/I/51+qy1fQbpL._AC_UL640_QL65_.jpg" },
+   { id: 100, name: "Magnifying Glass (Medical)", category: "health-devices", price: "$12.00", prescription: false, img: "https://a.media-amazon.com/images/I/51rehC61E0L._AC_UL640_QL65_.jpg" }
+ ];
 
-      if (cart.length === 0) {
-        orderSummary.innerHTML += "<p>Your cart is empty.</p>";
-        return;
-      }
 
-      cart.forEach(item => {
-        total += item.price * item.quantity;
-        orderSummary.innerHTML += `
-          <p>${item.name} (x${item.quantity}) - $${item.price * item.quantity}</p>
-        `;
-      });
 
-      orderSummary.innerHTML += `<h4>Total: $${total}</h4>`;
+// Render the order summary
+function renderOrderSummary() {
+  const orderSummary = document.getElementById("orderSummary");
+
+  // If the cart is empty, display a message and return
+  if (cartItems.length === 0) {
+    orderSummary.innerHTML = "<p>Your cart is empty.</p>";
+    return;
+  }
+
+  let summaryHTML = "<div class='order-items'>";
+  let total = 0;
+
+  cartItems.forEach((item) => {
+    // Find the product details from the `allProducts` array
+    const product = allProducts.find((product) => product.id === item.id);
+    if (product) {
+      const price = parseFloat(product.price.replace("$", ""));
+      const itemTotal = price * item.quantity; // Calculate total price for this item
+      total += itemTotal; // Add to the overall total
+
+      // Add the product details to the summary HTML
+      summaryHTML += `
+        <div class="order-item">
+          <img src="${product.img}" alt="${product.name}" class="order-item-img">
+          <div class="order-item-details">
+            <h4>${product.name}</h4>
+            <p>Quantity: ${item.quantity}</p>
+            <p>Price: $${itemTotal.toFixed(2)}</p>
+          </div>
+        </div>
+      `;
     }
+  });
 
-    document.getElementById("checkoutForm").addEventListener("submit", function(event) {
-      event.preventDefault();
+  // Close the container and add the total price
+  summaryHTML += `
+    </div>
+    <strong>Total: $${total.toFixed(2)}</strong>
+    <div style="margin-top: 20px;">
+      <a href="#" id="backToCartLink" class="back-to-cart"><b style="color:black;">Back to Cart</b></a>
+    </div>
+  `;
 
-      let name = document.getElementById("name").value;
-      let address = document.getElementById("address").value;
-      let phone = document.getElementById("phone").value;
-      let paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+  orderSummary.innerHTML = summaryHTML;
 
-      if (!name || !address || !phone) {
-        alert("Please fill all the details.");
-        return;
-      }
+  // Add functionality to the "Back to Cart" link
+  document.getElementById("backToCartLink").addEventListener("click", (e) => {
+    e.preventDefault(); // Prevent default link behavior
+    window.location.href = "products.html?openCart=true"; // Redirect to products page with query parameter
+  });
+}
 
-      alert(`Order placed successfully! Payment Method: ${paymentMethod}`);
-      localStorage.removeItem("cart");
+
+
+
+// Show a custom popup with a message
+function showPopup(message) {
+  const popup = document.getElementById("customPopup");
+  const popupMessage = popup.querySelector("#popupMessage");
+
+  // Set the message and display the popup
+  popupMessage.textContent = message;
+  popup.style.display = "block";
+
+  // Automatically hide the popup after 2 seconds
+  setTimeout(() => {
+    popup.style.display = "none";
+  }, 2000);
+}
+
+// Handle Place Order Button
+document.getElementById("placeOrderButton").addEventListener("click", () => {
+  const form = document.getElementById("checkoutForm");
+  if (!form.checkValidity()) {
+    // Show a popup if the form is invalid
+    showPopup("Please fill out all required fields correctly.");
+    form.reportValidity();
+    return;
+  }
+
+  // Open the payment details box
+  document.getElementById("paymentForm").style.display = "block";
+});
+
+// Handle Payment Form Submission
+document.getElementById("paymentDetailsForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  // Show the first popup: Processing payment
+  showPopup("Processing your payment...");
+  
+
+  // Simulate payment processing delay
+  setTimeout(() => {
+    // Show the second popup: Payment successful
+    showPopup("Payment successful!");
+
+    // Redirect to My Orders page after the second popup
+    setTimeout(() => {
       window.location.href = "orders.html";
-    });
+    }, 2000);
+  }, 2000);
+});
+
+
+// Call the function to render the order summary on page load
+document.addEventListener("DOMContentLoaded", () => {
+  renderOrderSummary();
+});
+
+// Form Submission Handler
+document.getElementById("checkoutForm").addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  // Validate Form
+  const form = event.target;
+  if (!form.checkValidity()) {
+    showPopup("Please fill out all required fields correctly.");
+    form.reportValidity();
+    return;
+  }
+
+  // Show Confirmation Message in Popup
+  showPopup("Opened Payment Method");
+});
+// Initial Render
+document.addEventListener("DOMContentLoaded", () => {
+renderOrderSummary();
+});
+
+   
 
     document.addEventListener("DOMContentLoaded", displayOrderSummary);
   </script>
