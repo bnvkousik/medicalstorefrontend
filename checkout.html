@@ -671,9 +671,34 @@ document.addEventListener("DOMContentLoaded", () => {
 renderOrderSummary();
 });
 
-   
+const selectedProductJSON = localStorage.getItem('selectedProduct');
+const selectedProduct = selectedProductJSON ? JSON.parse(selectedProductJSON) : null;
+function displayOrderSummary() {
+  const orderSummaryDiv = document.getElementById("orderSummary");
 
-    document.addEventListener("DOMContentLoaded", displayOrderSummary);
+  if (selectedProduct) {
+    const product = products.find(p => p.id == selectedProduct.id);
+    if (product) {
+      const price = parseFloat(product.price.replace("$", ""));
+      const total = price * selectedProduct.quantity;
+
+      orderSummaryDiv.innerHTML = `
+        <div class="order-item">
+          <img src="${product.img}" alt="${product.name}">
+          <div>
+            <h4>${product.name}</h4>
+            <p>Quantity: ${selectedProduct.quantity}</p>
+            <p>Price: $${total.toFixed(2)}</p>
+          </div>
+        </div>
+        <strong>Total: $${total.toFixed(2)}</strong>
+      `;
+    }
+  } else {
+    orderSummaryDiv.innerHTML = "<p>No product selected for checkout.</p>";
+  }
+}
+  document.addEventListener("DOMContentLoaded", displayOrderSumma);
   </script>
 </body>
 </html>

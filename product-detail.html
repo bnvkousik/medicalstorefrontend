@@ -77,8 +77,8 @@
     }
 
     .product-detail img {
-      width: 250px;
-      height: 250px;
+      width: 20%;
+      height: auto;
       object-fit: cover;
       border-radius: 10px;
     }
@@ -108,13 +108,11 @@
     .add-to-cart {
       background: #00164a;
       color: white;
+    } 
+    .add-to-cart:hover{
+      background-color:rgb(87, 0, 137);
     }
-
-    .buy-now {
-      background: #ff5733;
-      color: white;
-    }
-
+   
     .back-to-products {
       text-align: center;
       margin: 20px;
@@ -182,41 +180,1012 @@
 
   <script>
     const products = [
-      { id: 1, name: "Pain Reliever", category: "pain-relief", price: "$10", prescription: false, img: "pain-relief.jpg", description: "Effective pain relief medicine." },
-      { id: 2, name: "Vitamin C", category: "vitamins", price: "$15", prescription: false, img: "vitamins.jpg", description: "Boosts immunity and keeps you healthy." },
-      { id: 3, name: "Cold Medicine", category: "cold-medication", price: "$12", prescription: true, img: "cold-med.jpg", description: "Relieves cold and flu symptoms." }
+    {
+      id: 1,
+      name: "Paracetamol 500mg Tablets",
+      category: "pain-relief",
+      price: "$2.50",
+      prescription: false,
+      img: "https://images.unsplash.com/photo-1519161720427-f7711f9efce3?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHBpbGx8ZW58MHx8MHx8fDA%3D",
+      description: "Relieves mild to moderate pain and reduces fever. Safe for adults and children over 12. Take with water, up to 4 tablets daily. Avoid exceeding dosage."
+    },
+    // 2
+    {
+      id: 2,
+      name: "Vitamin C 1000mg Effervescent Tablets",
+      category: "vitamins",
+      price: "$5.00",
+      prescription: false,
+      img: "https://m.media-amazon.com/images/I/71Gfa-XmvWL._AC_UL640_FMwebp_QL65_.jpg",
+      description: "Boosts immunity and supports collagen production. Dissolves in water for easy consumption. Ideal for cold prevention and skin health."
+    },
+    // 3
+    {
+      id: 3,
+      name: "Cough Syrup (Adult)",
+      category: "cold-medication",
+      price: "$7.00",
+      prescription: false,
+      img: "https://m.media-amazon.com/images/I/817K0y+8AlL._AC_UL640_FMwebp_QL65_.jpg",
+      description: "Relieves dry or wet coughs with a soothing formula. Contains dextromethorphan and guaifenesin. Safe for adults and teens over 12."
+    },
+    // 4
+    {
+      id: 4,
+      name: "Ibuprofen 200mg Tablets",
+      category: "pain-relief",
+      price: "$3.00",
+      prescription: false,
+      img: "https://m.media-amazon.com/images/I/719q+tb4jFL._AC_UL640_FMwebp_QL65_.jpg",
+      description: "Reduces pain and inflammation from headaches, menstrual cramps, or arthritis. Non-steroidal anti-inflammatory drug (NSAID)."
+    },
+    // 5
+    {
+      id: 5,
+      name: "Multivitamin Tablets",
+      category: "vitamins",
+      price: "$8.00",
+      prescription: false,
+      img: "https://m.media-amazon.com/images/I/71Aquu3VmWL._AC_UL640_FMwebp_QL65_.jpg",
+      description: "Complete daily dose of essential vitamins and minerals. Supports energy, immunity, and overall health. Vegetarian formula."
+    },
+   
+  // 6
+  {
+    id: 6,
+    name: "Cold & Flu Syrup",
+    category: "cold-medication",
+    price: "$6.50",
+    prescription: false,
+    img: "https://m.media-amazon.com/images/I/813xVNzi26L._AC_UL640_FMwebp_QL65_.jpg",
+    description: "Relieves cough, congestion, and body aches. Contains dextromethorphan and antihistamines. Safe for adults and children over 6 years."
+  },
+  // 7
+  {
+    id: 7,
+    name: "Antiseptic Cream",
+    category: "skin-care",
+    price: "$4.50",
+    prescription: false,
+    img: "https://m.media-amazon.com/images/I/61gy5ZXn6bL._AC_UL640_FMwebp_QL65_.jpg",
+    description: "Prevents infections in minor cuts and scrapes. Contains neomycin and polymyxin B. Non-sticky formula for fast healing."
+  },
+  // 8
+  {
+    id: 8,
+    name: "Digestive Aid Tablets",
+    category: "digestive-health",
+    price: "$7.00",
+    prescription: false,
+    img: "https://m.media-amazon.com/images/I/718qpv+5U4L._AC_UL640_FMwebp_QL65_.jpg",
+    description: "Eases bloating and indigestion. Contains simethicone to break gas bubbles. Ideal for post-meal comfort. Gluten-free and vegetarian."
+  },
+  
+  {
+    id: 9,
+    name: "Hand Sanitizer (Alcohol-based)",
+    category: "personal-care",
+    price: "$3.50",
+    prescription: false,
+    img: "https://m.media-amazon.com/images/I/71g3Oz1NclL._AC_UL640_FMwebp_QL65_.jpg",
+    description: "Kills 99.9% of germs. Alcohol-based formula for quick drying. Gentle on skin with moisturizing aloe vera. Perfect for on-the-go use."
+  },
+  
+  {
+    id: 10,
+    name: "First Aid Kit (Small)",
+    category: "first-aid",
+    price: "$15.00",
+    prescription: false,
+    img: "https://m.media-amazon.com/images/I/71g347mQv2L._AC_UL640_FMwebp_QL65_.jpg",
+    description: "Includes bandages, antiseptic wipes, tweezers, and gauze. Compact and portable for home or travel. Essential for minor injuries."
+  },
+  
+  {
+    id: 11,
+    name: "Loratadine 10mg Tablets",
+    category: "allergy",
+    price: "$4.50",
+    prescription: false,
+    img: "https://m.media-amazon.com/images/I/61u+Q7SoyZL._AC_UL640_FMwebp_QL65_.jpg",
+    description: "Relieves seasonal allergies without drowsiness. Reduces sneezing, itching, and runny nose. Non-drowsy formula for daytime use."
+  },
+  {
+    id: 12,
+    name: "Calcium Supplements",
+    category: "supplements",
+    price: "$9.00",
+    prescription: false,
+    img: "https://m.media-amazon.com/images/I/71sYgUL7KzL._AC_UL640_FMwebp_QL65_.jpg",
+    description: "Supports bone health with calcium and vitamin D3. Prevents osteoporosis. Ideal for seniors and postmenopausal women."
+  },
+  {
+    id: 13,
+    name: "Sore Throat Lozenges",
+    category: "cold-medication",
+    price: "$5.50",
+    prescription: false,
+    img: "https://m.media-amazon.com/images/I/61bqcqfHGqL._AC_UL640_FMwebp_QL65_.jpg",
+    description: "Soothes dryness and irritation. Contains honey and menthol for long-lasting relief. Sugar-free and throat-friendly."
+  },
+  {
+    id: 14,
+    name: "Naproxen 500mg Tablets",
+    category: "pain-relief",
+    price: "$6.00",
+    prescription: false,
+    img: "https://m.media-amazon.com/images/I/713F+5b6BJL._AC_UL640_FMwebp_QL65_.jpg",
+    description: "Reduces pain and inflammation from arthritis, headaches, or menstrual cramps. Short-term use recommended. Take with food."
+  },
+  {
+    id: 15,
+    name: "Vitamin B Complex Capsules",
+    category: "vitamins",
+    price: "$10.00",
+    prescription: false,
+    img: "https://m.media-amazon.com/images/I/71Aquu3VmWL._AC_UL640_FMwebp_QL65_.jpg",
+    description: "Supports energy production and nerve health. Contains B1, B2, B6, and B12. Boosts metabolism and reduces fatigue."
+  },
+  {
+    id: 16,
+    name: "Antihistamine Cream",
+    category: "allergy",
+    price: "$7.50",
+    prescription: false,
+    img: "https://m.media-amazon.com/images/I/61gy5ZXn6bL._AC_UL640_FMwebp_QL65_.jpg",
+    description: "Relieves itching from insect bites, rashes, or eczema. Fast-acting hydrocortisone formula. Non-greasy and absorbs quickly."
+  },
+  {
+    id: 17,
+    name: "Digestive Enzyme Capsules",
+    category: "digestive-health",
+    price: "$11.50",
+    prescription: false,
+    img: "https://m.media-amazon.com/images/I/718qpv+5U4L._AC_UL640_FMwebp_QL65_.jpg",
+    description: "Aids digestion of fats, proteins, and carbs. Reduces bloating and indigestion. Ideal for lactose intolerance or poor nutrient absorption."
+  },
+  {
+    id: 18,
+    name: "Probiotic Capsules",
+    category: "supplements",
+    price: "$14.00",
+    prescription: false,
+    img: "https://m.media-amazon.com/images/I/61w3wGD-J4L._AC_UL640_FMwebp_QL65_.jpg",
+    description: "Promotes gut health with live beneficial bacteria. Boosts immunity and supports digestion. Great after antibiotic use."
+  },
+  {
+    id: 19,
+    name: "Adhesive Bandages (Pack of 20)",
+    category: "first-aid",
+    price: "$2.00",
+    prescription: false,
+    img: "https://m.media-amazon.com/images/I/61G6yvf5hCL._AC_UL640_FMwebp_QL65_.jpg",
+    description: "Protect minor cuts and scrapes. Waterproof and breathable. Comes in a pack of 20 for everyday first-aid needs."
+  },
+  {
+    id: 24,
+    name: "Muscle Rub Cream",
+    category: "pain-relief",
+    price: "$10.50",
+    prescription: false,
+    img: "https://a.media-amazon.com/images/I/61jp6Cug86L._AC_UL640_QL65_.jpg",
+    description: "Relieves muscle aches and stiffness. Contains menthol for a cooling sensation. Ideal for post-workout recovery or arthritis."
+  },
+  {
+    id: 25,
+    name: "Folic Acid Tablets",
+    category: "vitamins",
+    price: "$6.50",
+    prescription: false,
+    img: "https://a.media-amazon.com/images/I/51I++jRrYtL._AC_UL640_QL65_.jpg",
+    description: "Essential for fetal development during pregnancy. Supports red blood cell production. Prevents neural tube defects."
+  },
+  {
+    id: 26,
+    name: "Allergy Eye Drops",
+    category: "allergy",
+    price: "$9.00",
+    prescription: false,
+    img: "https://a.media-amazon.com/images/I/71K6GgJ6pDL._AC_UL640_QL65_.jpg",
+    description: "Relieves redness and itching from seasonal allergies. Safe for daily use. Provides long-lasting comfort for dry eyes."
+  },
+  {
+    id: 30,
+    name: "Hydrocortisone Cream",
+    category: "skin-care",
+    price: "$8.50",
+    prescription: false,
+    img: "https://a.media-amazon.com/images/I/61himFiMvQL._AC_UL640_QL65_.jpg",
+    description: "Treats skin inflammation, eczema, and bug bites. Reduces redness and swelling. Gentle on sensitive skin."
+  },
+  {
+    id: 31,
+    name: "Codeine Phosphate Tablets",
+    category: "pain-relief",
+    price: "$12.00",
+    prescription: true,
+    img: "https://m.media-amazon.com/images/I/61bsVYLiC1L._AC_UY436_FMwebp_QL65_.jpg",
+    description: "Strong pain relief for severe discomfort. Requires a prescription. Not for long-term use. Consult a doctor before taking."
+  },
+  {
+    id: 32,
+    name: "Vitamin B12 Injections",
+    category: "vitamins",
+    price: "$25.00",
+    prescription: true,
+    img: "https://a.media-amazon.com/images/I/71ePHxs6ilL._AC_UL640_QL65_.jpg",
+    description: "Boosts energy and nerve function via injections. Ideal for deficiencies or dietary restrictions. Prescription required."
+  },
+  {
+    id: 56,
+    name: "Wound Closure Strips",
+    category: "first-aid",
+    price: "$5.50",
+    prescription: false,
+    img: "https://m.media-amazon.com/images/I/81QdpGVT-fL._AC_UL640_FMwebp_QL65_.jpg",
+    description: "Closes minor cuts and lacerations. Adhesive-free design for sensitive skin. Speeds up healing process."
+  },
+  {
+    id: 57,
+    name: "Insect Repellent Spray",
+    category: "personal-care",
+    price: "$8.00",
+    prescription: false,
+    img: "https://m.media-amazon.com/images/I/61G6yvf5hCL._AC_UL640_FMwebp_QL65_.jpg",
+    description: "Protects against mosquitoes and ticks. DEET-free formula. Safe for adults and children over 3 years."
+  },
+  {
+    id: 58,
+    name: "Lip Balm (SPF)",
+    category: "skin-care",
+    price: "$3.50",
+    prescription: false,
+    img: "https://m.media-amazon.com/images/I/61bqcqfHGqL._AC_UL640_FMwebp_QL65_.jpg",
+    description: "Moisturizes lips with SPF 30 protection. Prevents chapping and sunburn. Contains beeswax and shea butter."
+  },
+  {
+    id: 62,
+    name: "Zinc Supplements",
+    category: "vitamins",
+    price: "$8.50",
+    prescription: false,
+    img: "https://m.media-amazon.com/images/I/71sYgUL7KzL._AC_UL640_FMwebp_QL65_.jpg",
+    description: "Supports immune function and wound healing. Zinc picolinate for maximum absorption. Ideal for cold prevention."
+  },
+  {
+    id: 63,
+    name: "Herbal Cough Syrup",
+    category: "cold-medication",
+    price: "$9.00",
+    prescription: false,
+    img: "https://a.media-amazon.com/images/I/81ZNQU5dUCS._AC_UL640_QL65_.jpg",
+    description: "Relieves dry or wet coughs with natural ingredients like honey and thyme. No artificial additives."
+  },
+  {
+    id: 64,
+    name: "Travel Sickness Bands",
+    category: "travel-essentials",
+    price: "$10.00",
+    prescription: false,
+    img: "https://a.media-amazon.com/images/I/814LCV4CslL._AC_UL640_QL65_.jpg",
+    description: "Eases motion sickness with acupressure technology. Comfortable for car, boat, or plane travel. Drug-free solution."
+  },
+  {
+    id: 80,
+    name: "Eye Drops (Lubricating)",
+    category: "eye-care",
+    price: "$8.50",
+    prescription: false,
+    img: "https://a.media-amazon.com/images/I/81PEQb565HL._AC_UL640_QL65_.jpg",
+    description: "Relieves dryness and irritation. Preservative-free for sensitive eyes. Provides long-lasting moisture."
+  },
+  
+  {
+    id: 81,
+    name: "Back Pain Relief Cream",
+    category: "pain-relief",
+    price: "$10.00",
+    prescription: false,
+    img: "https://a.media-amazon.com/images/I/61jp6Cug86L._AC_UL640_QL65_.jpg",
+    description: "Alleviates lower back pain with menthol and camphor. Penetrating formula for deep muscle relief."
+  },
+  {
+    id: 82,
+    name: "Magnesium Supplements",
+    category: "vitamins",
+    price: "$9.50",
+    prescription: false,
+    img: "https://a.media-amazon.com/images/I/41rg1jbFAOL._AC_SR250,250_.jpg",
+    description: "Supports nerve and muscle function. Reduces muscle cramps and improves sleep quality. Contains magnesium glycinate."
+  },
+  {
+    id: 83,
+    name: "Cough & Cold Tablets",
+    category: "cold-medication",
+    price: "$6.50",
+    prescription: false,
+    img: "https://a.media-amazon.com/images/I/713xVNzi26L._AC_UL640_QL65_.jpg",
+    description: "Combats cough, congestion, and fever. Contains paracetamol and dextromethorphan. Safe for adults and teens."
+  },
+  {
+    id: 86,
+    name: "Medical Tape",
+    category: "first-aid",
+    price: "$3.50",
+    prescription: false,
+    img: "https://a.media-amazon.com/images/I/61sPHa1g4RL._AC_UL640_QL65_.jpg",
+    description: "Secures bandages and splints. Waterproof and hypoallergenic. Ideal for sports or medical use."
+  },
+  {
+    id: 87,
+    name: "Callus Remover",
+    category: "foot-care",
+    price: "$9.00",
+    prescription: false,
+    img: "https://a.media-amazon.com/images/I/61i4k2U8olL._AC_UL640_QL65_.jpg",
+    description: "Softens and removes tough calluses. Salicylic acid formula. Safe for feet and hands."
+  },
+  {
+    id: 88,
+    name: "Eczema Cream",
+    category: "skin-care",
+    price: "$16.00",
+    prescription: false,
+    img: "https://a.media-amazon.com/images/I/514BYG3ttGL._AC_UL640_QL65_.jpg",
+    description: "Moisturizes and soothes eczema-prone skin. Contains ceramides and colloidal oatmeal. Non-greasy formula."
+  },
+  {
+    id: 92,
+    name: "Vitamin A Supplements",
+    category: "vitamins",
+    price: "$8.00",
+    prescription: false,
+    img: "https://a.media-amazon.com/images/I/51wdUfzvE4L._AC_UL640_QL65_.jpg",
+    description: "Supports eye health and skin repair. Promotes healthy cell growth. Take with food for better absorption."
+  },
+  {
+    id: 93,
+    name: "Steam Inhaler",
+    category: "cold-medication",
+    price: "$25.00",
+    prescription: false,
+    img: "https://a.media-amazon.com/images/I/61JUAq7WWzL._AC_UL640_QL65_.jpg",
+    description: "Eases sinus congestion with steam therapy. Add eucalyptus oil for enhanced relief. Safe and reusable."
+  },
+  {
+    id: 94,
+    name: "Ear Plugs",
+    category: "ear-care",
+    price: "$4.00",
+    prescription: false,
+    img: "https://a.media-amazon.com/images/I/51vun8qtNlL._AC_UL640_QL65_.jpg",
+    description: "Blocks noise pollution for better sleep. Soft silicone for comfortable fit. Ideal for travel or loud environments."
+  },
+  {
+    id: 95,
+    name: "Humidifier",
+    category: "respiratory-care",
+    price: "$40.00",
+    prescription: false,
+    img: "https://a.media-amazon.com/images/I/61TPvUavIPL._AC_UY436_QL65_.jpg",
+    description: "Adds moisture to dry air. Reduces allergy symptoms and soothes dry skin. Compact design for home use."
+  },
+  {
+    id: 96,
+    name: "Tweezers (Medical)",
+    category: "first-aid",
+    price: "$5.00",
+    prescription: false,
+    img: "https://a.media-amazon.com/images/I/71TBrIU3hgL._AC_UL640_QL65_.jpg",
+    description: "Precision stainless steel tweezers for splinter removal. Sterile and rust-resistant. Comes with a protective case."
+  },
+  {
+    id: 97,
+    name: "Nail Clippers",
+    category: "personal-care",
+    price: "$6.00",
+    prescription: false,
+    img: "https://a.media-amazon.com/images/I/71StzTWBH+L._AC_UL640_QL65_.jpg",
+    description: "Sharp stainless steel clippers for clean cuts. Ergonomic handle for comfort. Ideal for toenails and fingernails."
+  },
+  
+  {
+    id: 98,
+    name: "Stretch Mark Cream",
+    category: "skin-care",
+    price: "$18.00",
+    prescription: false,
+    img: "https://a.media-amazon.com/images/I/61e3ur-UNQL._AC_UL640_QL65_.jpg",
+    description: "Reduces the appearance of stretch marks. Hyaluronic acid and vitamin E formula. Best for pregnant women or weight gain."
+  },
+  {
+    id: 99,
+    name: "Toothbrush (Soft Bristle)",
+    category: "oral-care",
+    price: "$3.50",
+    prescription: false,
+    img: "https://a.media-amazon.com/images/I/51+qy1fQbpL._AC_UL640_QL65_.jpg",
+    description: "Gentle on gums and enamel. Replace every 3 months for optimal oral hygiene. Comes with a travel case."
+  },
+  {
+    id: 100,
+    name: "Magnifying Glass (Medical)",
+    category: "health-devices",
+    price: "$12.00",
+    prescription: false,
+    img: "https://a.media-amazon.com/images/I/51rehC61E0L._AC_UL640_QL65_.jpg",
+    description: "Ideal for reading small text or inspecting skin moles. 3x magnification with LED light. Portable design."
+  },
+  {
+    id: 90,
+    name: "Reading Glasses",
+    category: "eye-care",
+    price: "$20.00",
+    prescription: false,
+    img: "https://a.media-amazon.com/images/I/417ZW78r0UL._AC_SR360,240_CB1169409_QL70_.jpg",
+    description: "Adjustable lenses for mild nearsightedness. Foldable frames for travel. Available in multiple strengths."
+  },
+  {
+    id: 91,
+    name: "Arthritis Pain Relief Gel",
+    category: "pain-relief",
+    price: "$13.00",
+    prescription: false,
+    img: "https://a.media-amazon.com/images/I/71rIEVN9d8L._AC_UL640_QL65_.jpg",
+    description: "Eases joint pain and stiffness. Penetrating formula with capsaicin. Non-greasy and quick-drying."
+  },
+  {
+    id: 60,
+    name: "Eye Wash Solution",
+    category: "eye-care",
+    price: "$7.00",
+    prescription: false,
+    img: "https://m.media-amazon.com/images/I/5187xVZta8L._AC_UL640_FMwebp_QL65_.jpg",
+    description: "Cleanses eyes from debris or irritation. Sterile saline solution. Single-use vials for hygiene."
+  },
+  
+  {
+    id: 61,
+    name: "Strong Pain Relief Balm",
+    category: "pain-relief",
+    price: "$11.50",
+    prescription: false,
+    img: "https://m.media-amazon.com/images/I/51HhchJDAjL._AC_UL640_FMwebp_QL65_.jpg",
+    description: "Relieves muscle pain with menthol and eucalyptus. Fast-acting for sports injuries or chronic pain."
+  },
+
+  {
+    id: 72,
+    name: "Iron Supplements",
+    category: "vitamins",
+    price: "$7.50",
+    prescription: false,
+    img: "https://a.media-amazon.com/images/I/61w3wGD-J4L._AC_UL640_QL65_.jpg",
+    description: "Prevents iron deficiency anemia. Contains ferrous sulfate. Take with vitamin C for better absorption."
+  },
+  {
+    id: 73,
+    name: "Eucalyptus Oil (Inhalant)",
+    category: "cold-medication",
+    price: "$6.00",
+    prescription: false,
+    img: "https://a.media-amazon.com/images/I/61yBRwpLQRL._AC_UL640_QL65_.jpg",
+    description: "Clears nasal congestion. Add to steam inhalers or diffusers. Pure essential oil with refreshing scent."
+  },
+
+  {
+    id: 74,
+    name: "Sea Sickness Patches",
+    category: "travel-essentials",
+    price: "$11.00",
+    prescription: false,
+    img: "https://a.media-amazon.com/images/I/61lS84JqfML._AC_UL640_QL65_.jpg",
+    description: "Prevents motion sickness with scopolamine. Discreet skin patches. Effective for up to 72 hours."
+  },
+
+  {
+    id: 6,
+    name: "Cold & Flu Nasal Spray",
+    category: "cold-medication",
+    price: "$8.00",
+    prescription: false,
+    img: "https://a.media-amazon.com/images/I/613xVNzi26L._AC_UL640_QL65_.jpg",
+    description: "Relieves nasal congestion. Sterile saline formula. Safe for children over 6 years."
+  },
+  // 56
+  {
+    id: 56,
+    name: "Medical Tape",
+    category: "first-aid",
+    price: "$3.50",
+    prescription: false,
+    img: "https://a.media-amazon.com/images/I/61sPHa1g4RL._AC_UL640_QL65_.jpg",
+    description: "Secures bandages and splints. Waterproof and hypoallergenic. Ideal for sports injuries."
+  },
+  // 57
+  {
+    id: 57,
+    name: "Insect Repellent Spray",
+    category: "personal-care",
+    price: "$8.00",
+    prescription: false,
+    img: "https://m.media-amazon.com/images/I/61G6yvf5hCL._AC_UL640_FMwebp_QL65_.jpg",
+    description: "Protects against mosquitoes and ticks. DEET-free formula. Safe for adults and kids over 3 years."
+  },
+  // 58
+  {
+    id: 58,
+    name: "Lip Balm (SPF)",
+    category: "skin-care",
+    price: "$3.50",
+    prescription: false,
+    img: "https://m.media-amazon.com/images/I/61bqcqfHGqL._AC_UL640_FMwebp_QL65_.jpg",
+    description: "Moisturizes lips with SPF 30 protection. Prevents chapping and sunburn. Contains beeswax and shea butter."
+  },
+  // 59
+  {
+    id: 59,
+    name: "Antiseptic Wipes",
+    category: "first-aid",
+    price: "$4.00",
+    prescription: false,
+    img: "https://m.media-amazon.com/images/I/61+qy1fQbpL._AC_UL640_FMwebp_QL65_.jpg",
+    description: "Kills germs on surfaces and hands. Alcohol-free formula for sensitive skin. Comes in a pack of 50."
+  },
+  // 60
+  {
+    id: 60,
+    name: "Eye Wash Solution",
+    category: "eye-care",
+    price: "$7.00",
+    prescription: false,
+    img: "https://m.media-amazon.com/images/I/5187xVZta8L._AC_UL640_FMwebp_QL65_.jpg",
+    description: "Cleanses eyes from debris or irritation. Sterile saline solution. Single-use vials for hygiene."
+  },
+  // 61
+  {
+    id: 61,
+    name: "Strong Pain Relief Balm",
+    category: "pain-relief",
+    price: "$11.50",
+    prescription: false,
+    img: "https://m.media-amazon.com/images/I/51HhchJDAjL._AC_UL640_FMwebp_QL65_.jpg",
+    description: "Relieves muscle pain with menthol and eucalyptus. Fast-acting for sports injuries or chronic pain."
+  },
+  // 62
+  {
+    id: 62,
+    name: "Zinc Supplements",
+    category: "vitamins",
+    price: "$8.50",
+    prescription: false,
+    img: "https://m.media-amazon.com/images/I/71sYgUL7KzL._AC_UL640_FMwebp_QL65_.jpg",
+    description: "Supports immune function and wound healing. Zinc picolinate for maximum absorption. Ideal for cold prevention."
+  },
+  // 63
+  {
+    id: 63,
+    name: "Herbal Cough Syrup",
+    category: "cold-medication",
+    price: "$9.00",
+    prescription: false,
+    img: "https://a.media-amazon.com/images/I/81ZNQU5dUCS._AC_UL640_QL65_.jpg",
+    description: "Relieves dry or wet coughs with natural ingredients like honey and thyme. No artificial additives."
+  },
+  // 64
+  {
+    id: 64,
+    name: "Travel Sickness Bands",
+    category: "travel-essentials",
+    price: "$10.00",
+    prescription: false,
+    img: "https://a.media-amazon.com/images/I/814LCV4CslL._AC_UL640_QL65_.jpg",
+    description: "Eases motion sickness with acupressure technology. Comfortable for car, boat, or plane travel. Drug-free solution."
+  },
+  // 65
+  {
+    id: 65,
+    name: "Antiseptic Cream",
+    category: "skin-care",
+    price: "$4.50",
+    prescription: false,
+    img: "https://m.media-amazon.com/images/I/61gy5ZXn6bL._AC_UL640_FMwebp_QL65_.jpg",
+    description: "Prevents infections in minor cuts and scrapes. Contains neomycin and polymyxin B. Non-sticky formula."
+  },
+  // 66
+  {
+    id: 66,
+    name: "Digestive Aid Tablets",
+    category: "digestive-health",
+    price: "$7.00",
+    prescription: false,
+    img: "https://m.media-amazon.com/images/I/718qpv+5U4L._AC_UL640_FMwebp_QL65_.jpg",
+    description: "Eases bloating and indigestion. Contains simethicone to break gas bubbles. Ideal for post-meal comfort."
+  },
+  // 67
+  {
+    id: 67,
+    name: "Hand Sanitizer (Alcohol-based)",
+    category: "personal-care",
+    price: "$3.50",
+    prescription: false,
+    img: "https://m.media-amazon.com/images/I/71g3Oz1NclL._AC_UL640_FMwebp_QL65_.jpg",
+    description: "Kills 99.9% of germs. Alcohol-based formula for quick drying. Gentle on skin with moisturizing aloe vera."
+  },
+  // 68
+  {
+    id: 68,
+    name: "First Aid Kit (Small)",
+    category: "first-aid",
+    price: "$15.00",
+    prescription: false,
+    img: "https://m.media-amazon.com/images/I/71g347mQv2L._AC_UL640_FMwebp_QL65_.jpg",
+    description: "Includes bandages, antiseptic wipes, tweezers, and gauze. Compact and portable for home or travel."
+  },
+  // 69
+  {
+    id: 69,
+    name: "Loratadine 10mg Tablets",
+    category: "allergy",
+    price: "$4.50",
+    prescription: false,
+    img: "https://m.media-amazon.com/images/I/61u+Q7SoyZL._AC_UL640_FMwebp_QL65_.jpg",
+    description: "Relieves seasonal allergies without drowsiness. Reduces sneezing, itching, and runny nose."
+  },
+ // ... (previous entries up to ID 69)
+// 70
+{
+  id: 70,
+  name: "Contact Lens Solution",
+  category: "eye-care",
+  price: "$10.00",
+  prescription: false,
+  img: "https://m.media-amazon.com/images/I/81NPt2aVM8L._AC_UL640_FMwebp_QL65_.jpg",
+  description: "Cleans and disinfects contact lenses. Multipurpose solution for soaking, rinsing, and storing lenses. Preservative-free formula for sensitive eyes. Maintains lens clarity and comfort."
+},
+// 71
+{
+  id: 71,
+  name: "Headache Relief Tablets",
+  category: "pain-relief",
+  price: "$4.00",
+  prescription: false,
+  img: "https://a.media-amazon.com/images/I/71E9GVeSkvL._AC_UL640_QL65_.jpg",
+  description: "Relieves tension and migraine headaches. Contains acetaminophen and caffeine for faster pain relief. Take with water. Consult a doctor for chronic headaches."
+},
+// 72
+{
+  id: 72,
+  name: "Iron Supplements",
+  category: "vitamins",
+  price: "$7.50",
+  prescription: false,
+  img: "https://a.media-amazon.com/images/I/61w3wGD-J4L._AC_UL640_QL65_.jpg",
+  description: "Prevents iron deficiency anemia. Contains ferrous sulfate for optimal absorption. Take with vitamin C to enhance iron uptake. Ideal for vegetarians and menstruating women."
+},
+// 73
+{
+  id: 73,
+  name: "Eucalyptus Oil (Inhalant)",
+  category: "cold-medication",
+  price: "$6.00",
+  prescription: false,
+  img: "https://a.media-amazon.com/images/I/61yBRwpLQRL._AC_UL640_QL65_.jpg",
+  description: "Clears nasal congestion with pure eucalyptus oil. Use in steam inhalers or diffusers for respiratory relief. Enhances breathing during colds or allergies. Non-toxic and 100% natural."
+},
+// 74
+{
+  id: 74,
+  name: "Sea Sickness Patches",
+  category: "travel-essentials",
+  price: "$11.00",
+  prescription: false,
+  img: "https://a.media-amazon.com/images/I/61lS84JqfML._AC_UL640_QL65_.jpg",
+  description: "Prevents motion sickness with scopolamine. Discreet skin patches provide 72-hour protection. Ideal for boat trips, car rides, or flights. Consult a doctor before use."
+},
+// 75
+{
+  id: 75,
+  name: "Nasal Decongestant Spray",
+  category: "cold-medication",
+  price: "$8.00",
+  prescription: false,
+  img: "https://m.media-amazon.com/images/I/613xVNzi26L._AC_UL640_FMwebp_QL65_.jpg",
+  description: "Relieves nasal congestion instantly. Reduces swelling in nasal passages. Use 2-3 times daily for up to 3 days. Avoid prolonged use to prevent rebound effects."
+},
+// 76
+{
+  id: 76,
+  name: "Antibacterial Mouthwash",
+  category: "oral-care",
+  price: "$6.50",
+  prescription: false,
+  img: "https://m.media-amazon.com/images/I/712V1GCv-zL._AC_UL640_FMwebp_QL65_.jpg",
+  description: "Kills germs and freshens breath. Alcohol-free formula for sensitive gums. Reduces plaque and prevents gingivitis. Use twice daily for optimal oral hygiene."
+},
+// 77
+{
+  id: 77,
+  name: "Acne Spot Treatment",
+  category: "skin-care",
+  price: "$12.00",
+  prescription: false,
+  img: "https://a.media-amazon.com/images/I/61yjHJ+UzjL._AC_UL640_QL65_.jpg",
+  description: "Targets pimples and reduces redness. Salicylic acid penetrates pores to unclog and heal blemishes. Non-comedogenic and suitable for all skin types."
+},
+// 78
+{
+  id: 78,
+  name: "Acne Treatment Cream",
+  category: "skin-care",
+  price: "$13.00",
+  prescription: false,
+  img: "https://a.media-amazon.com/images/I/61yjHJ+UzjL._AC_UL640_QL65_.jpg",
+  description: "Clears acne and prevents breakouts. Benzoyl peroxide formula kills bacteria. Reduces oil production and minimizes scars. Use nightly for best results."
+},
+// 79
+{
+  id: 79,
+  name: "Water Flosser",
+  category: "oral-care",
+  price: "$45.00",
+  prescription: false,
+  img: "https://a.media-amazon.com/images/I/61lROm-52mL._AC_UL640_QL65_.jpg",
+  description: "Gentle water jet cleans between teeth. Removes food debris and plaque effectively. Adjustable pressure settings for sensitive gums. Includes multiple nozzle tips."
+},
+// 80
+{
+  id: 80,
+  name: "Eye Drops (Lubricating)",
+  category: "eye-care",
+  price: "$8.50",
+  prescription: false,
+  img: "https://a.media-amazon.com/images/I/81PEQb565HL._AC_UL640_QL65_.jpg",
+  description: "Relieves dryness and irritation. Hypotonic saline solution mimics natural tears. Preservative-free for sensitive eyes. Use 3–4 times daily as needed."
+},
+// 81
+{
+  id: 81,
+  name: "Back Pain Relief Cream",
+  category: "pain-relief",
+  price: "$10.00",
+  prescription: false,
+  img: "https://a.media-amazon.com/images/I/61jp6Cug86L._AC_UL640_QL65_.jpg",
+  description: "Eases lower back pain with menthol and camphor. Penetrating formula for deep muscle relief. Apply twice daily for chronic or acute pain. Non-greasy and fast-absorbing."
+},
+// 82
+{
+  id: 82,
+  name: "Magnesium Supplements",
+  category: "vitamins",
+  price: "$9.50",
+  prescription: false,
+  img: "https://a.media-amazon.com/images/I/41rg1jbFAOL._AC_SR250,250_.jpg",
+  description: "Supports nerve and muscle function. Magnesium glycinate for easy absorption. Reduces cramps, improves sleep quality, and promotes relaxation. Take with meals."
+},
+// 83
+{
+  id: 83,
+  name: "Sinusitis Nasal Spray",
+  category: "cold-medication",
+  price: "$10.00",
+  prescription: false,
+  img: "https://m.media-amazon.com/images/I/817K0y+8AlL._AC_UL640_FMwebp_QL65_.jpg",
+  description: "Relieves sinus pressure and congestion. Saline-based formula with antiseptic properties. Safe for daily use during colds or allergies. Reduces facial pain and headaches."
+},
+// 84
+{
+  id: 84,
+  name: "Electric Razor (Women)",
+  category: "personal-care",
+  price: "$25.00",
+  prescription: false,
+  img: "https://a.media-amazon.com/images/I/71StzTWBH+L._AC_UL640_QL65_.jpg",
+  description: "Smooth and precise hair removal. Rounded head for sensitive skin. Waterproof design for wet/dry use. Includes a travel case and multiple blades for close trimming."
+},
+// 85
+{
+  id: 85,
+  name: "Cold Sore Cream",
+  category: "skin-care",
+  price: "$14.00",
+  prescription: false,
+  img: "https://a.media-amazon.com/images/I/514BYG3ttGL._AC_UL640_QL65_.jpg",
+  description: "Accelerates healing of cold sores. Contains acyclovir to reduce viral activity. Apply directly to blisters for faster scabbing. Non-greasy and quick-drying."
+},
+// 86
+{
+  id: 86,
+  name: "Medical Tape",
+  category: "first-aid",
+  price: "$3.50",
+  prescription: false,
+  img: "https://a.media-amazon.com/images/I/61sPHa1g4RL._AC_UL640_QL65_.jpg",
+  description: "Secures bandages and splints. Waterproof and hypoallergenic. Ideal for sports injuries or post-surgery care. Adhesive stays intact even in wet conditions."
+},
+// 87
+{
+  id: 87,
+  name: "Callus Remover",
+  category: "foot-care",
+  price: "$9.00",
+  prescription: false,
+  img: "https://a.media-amazon.com/images/I/61i4k2U8olL._AC_UL640_QL65_.jpg",
+  description: "Softens and removes tough calluses. Urea-based formula penetrates hard skin. Use with a pumice stone for smooth feet. Safe for diabetics and sensitive skin."
+},
+// 88
+{
+  id: 88,
+  name: "Eczema Cream",
+  category: "skin-care",
+  price: "$16.00",
+  prescription: false,
+  img: "https://a.media-amazon.com/images/I/514BYG3ttGL._AC_UL640_QL65_.jpg",
+  description: "Moisturizes and calms eczema flare-ups. Contains colloidal oatmeal and ceramides. Reduces itching and redness. Non-greasy and suitable for all skin types."
+},
+// 89
+{
+  id: 89,
+  name: "Sleep Aid Tablets",
+  category: "sleep-aids",
+  price: "$12.00",
+  prescription: false,
+  img: "https://m.media-amazon.com/images/I/616RYKAUVvL._AC_UL640_FMwebp_QL65_.jpg",
+  description: "Promotes restful sleep without drowsiness. Contains melatonin for regulating sleep cycles. Take 30 minutes before bedtime. Safe for occasional use."
+},
+// 90
+{
+  id: 90,
+  name: "Reading Glasses",
+  category: "eye-care",
+  price: "$20.00",
+  prescription: false,
+  img: "https://a.media-amazon.com/images/I/417ZW78r0UL._AC_SR360,240_CB1169409_QL70_.jpg",
+  description: "Adjustable lenses for mild nearsightedness. Lightweight plastic frames. Comes in multiple strengths. Ideal for reading books, menus, or screens."
+},
+// 91
+{
+  id: 91,
+  name: "Arthritis Pain Relief Gel",
+  category: "pain-relief",
+  price: "$13.00",
+  prescription: false,
+  img: "https://a.media-amazon.com/images/I/71rIEVN9d8L._AC_UL640_QL65_.jpg",
+  description: "Eases joint pain and stiffness. Penetrating gel with capsaicin for heat therapy. Use for arthritis, tendonitis, or sports injuries. Apply 3–4 times daily."
+},
+// 92
+{
+  id: 92,
+  name: "Vitamin A Supplements",
+  category: "vitamins",
+  price: "$8.00",
+  prescription: false,
+  img: "https://a.media-amazon.com/images/I/51wdUfzvE4L._AC_UL640_QL65_.jpg",
+  description: "Supports eye health and skin repair. Promotes cell regeneration and immune function. Take with meals for better absorption. Ideal for dry skin or night vision issues."
+},
+// 93
+{
+  id: 93,
+  name: "Antiseptic Mouthwash",
+  category: "oral-care",
+  price: "$7.00",
+  prescription: false,
+  img: "https://m.media-amazon.com/images/I/71OnByHVvzL._AC_UL640_FMwebp_QL65_.jpg",
+  description: "Kills germs and freshens breath. Alcohol-free formula for sensitive gums. Reduces plaque and prevents gingivitis. Use after brushing for complete oral care."
+},
+// 94
+{
+  id: 94,
+  name: "Inhaler (Salbutamol)",
+  category: "respiratory-care",
+  price: "$18.00",
+  prescription: true,
+  img: "https://m.media-amazon.com/images/I/61bsVYLiC1L._AC_UY436_FMwebp_QL65_.jpg",
+  description: "Relieves asthma and bronchospasm symptoms. Fast-acting bronchodilator. Use as directed during an attack. Requires a prescription for purchase."
+},
+// 95
+{
+  id: 95,
+  name: "Sunscreen Lotion SPF 50+",
+  category: "personal-care",
+  price: "$10.00",
+  prescription: false,
+  img: "https://m.media-amazon.com/images/I/61bqcqfHGqL._AC_UL640_FMwebp_QL65_.jpg",
+  description: "Blocks UVA/UVB rays for sun protection. Water-resistant for 80 minutes. Non-greasy and suitable for all skin types. Prevents sunburn and premature aging."
+},
+// 96
+{
+  id: 96,
+  name: "Tweezers (Medical)",
+  category: "first-aid",
+  price: "$5.00",
+  prescription: false,
+  img: "https://a.media-amazon.com/images/I/71TBrIU3hgL._AC_UL640_QL65_.jpg",
+  description: "Precision stainless steel tweezers for splinter removal. Sterile and rust-resistant. Ideal for removing ticks, splinters, or ingrown hairs. Comes with a protective case."
+},
+// 97
+{
+  id: 97,
+  name: "Nail Clippers",
+  category: "personal-care",
+  price: "$6.00",
+  prescription: false,
+  img: "https://a.media-amazon.com/images/I/71StzTWBH+L._AC_UL640_QL65_.jpg",
+  description: "Sharp stainless steel clippers for clean cuts. Ergonomic handle for comfort. Safe for toenails and fingernails. Includes a file for shaping nails."
+},
+// 98
+{
+  id: 98,
+  name: "Stretch Mark Cream",
+  category: "skin-care",
+  price: "$18.00",
+  prescription: false,
+  img: "https://a.media-amazon.com/images/I/61e3ur-UNQL._AC_UL640_QL65_.jpg",
+  description: "Reduces the appearance of stretch marks. Hyaluronic acid and vitamin E formula. Ideal for pregnant women or post-weight loss. Apply daily for visible results."
+},
+// 99
+{
+  id: 99,
+  name: "Antibiotic Ointment",
+  category: "first-aid",
+  price: "$4.00",
+  prescription: false,
+  img: "https://m.media-amazon.com/images/I/61gy5ZXn6bL._AC_UL640_FMwebp_QL65_.jpg",
+  description: "Prevents infections in minor cuts. Neomycin and polymyxin B formula. Apply to wounds before bandaging. Safe for children and adults."
+},
+// 100
+{
+  id: 100,
+  name: "Allergy Relief Nasal Spray",
+  category: "allergy",
+  price: "$14.00",
+  prescription: false,
+  img: "https://m.media-amazon.com/images/I/71K6GgJ6pDL._AC_UL640_FMwebp_QL65_.jpg",
+  description: "Relieves seasonal allergies and sinus congestion. Reduces histamine reactions. Use 1–2 sprays daily. Safe for long-term use. Consult a doctor for severe symptoms."
+}
+    
     ];
 
-    function loadProductDetails() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const productId = urlParams.get("id");
-      const product = products.find(p => p.id == productId);
+  let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
-      if (product) {
-        document.getElementById("productDetail").innerHTML = `
-          <img src="${product.img}" alt="${product.name}">
-          <h2>${product.name}</h2>
-          <p class="price">${product.price}</p>
-          <p>${product.description}</p>
-          <p>${product.prescription ? "Prescription Required" : "No Prescription Needed"}</p>
-          <button class="add-to-cart" onclick="addToCart(${product.id})">Add to Cart</button>
-          <button class="buy-now" onclick="buyNow(${product.id})">Buy Now</button>
-        `;
-      } else {
-        document.getElementById("productDetail").innerHTML = "<p>Product not found.</p>";
-      }
+  function loadProductDetails() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get("id");
+    const product = products.find(p => p.id == productId);
+
+    if (product) {
+      document.getElementById("productDetail").innerHTML = `
+      <img src="${product.img}" alt="${product.name}">
+      <h2>${product.name}</h2>
+      <p class="price">${product.price}</p>
+      <p>${product.prescription ? "Prescription Required" : "No Prescription Needed"}</p>
+      <p class="description">${product.description}</p> <!-- Add this line -->
+      <button class="add-to-cart" onclick="addToCart(${product.id})">Add to Cart</button>
+      `;
+    } else {
+      document.getElementById("productDetail").innerHTML = "<p>Product not found.</p>";
+    }
+  }
+
+  function addToCart(productId) {
+    // Check if the product is already in the cart
+    const existingItem = cartItems.find(item => item.id === productId);
+    if (existingItem) {
+      // If the product exists, increment its quantity
+      existingItem.quantity += 1;
+    } else {
+      // If the product is not in the cart, add it with a quantity of 1
+      cartItems.push({ id: productId, quantity: 1 });
     }
 
-    function addToCart(productId) {
-      alert(`Product ID ${productId} added to cart!`);
-    }
+    // Save the updated cart to localStorage
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
 
-    function buyNow(productId) {
-      alert(`Redirecting to checkout for product ID ${productId}`);
-      window.location.href = "checkout.html";
-    }
+    // Redirect to products.html with openCart=true query parameter
+    window.location.href = "products.html?openCart=true";
+  }
 
-    document.addEventListener("DOMContentLoaded", loadProductDetails);
+  document.addEventListener("DOMContentLoaded", loadProductDetails);
   </script>
 </body>
 </html>
